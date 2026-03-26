@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Card from '@/components/ui/Card';
 import MonthlyPaymentBadge from '@/components/leasing/MonthlyPaymentBadge';
 import Badge from '@/components/ui/Badge';
+import ProductImage from '@/components/products/ProductImage';
 import { formatEuro } from '@/lib/utils';
 import type { Produit } from '@/types';
-import { Package } from 'lucide-react';
 
 interface ProductCardProps {
   produit: Produit;
@@ -16,17 +15,10 @@ export default function ProductCard({ produit }: ProductCardProps) {
     <Link href={`/produit/${produit.slug}`}>
       <Card hover>
         <div className="relative h-48 bg-gradient-to-br from-light to-gray-100 flex items-center justify-center overflow-hidden">
-          {produit.images && produit.images.length > 0 ? (
-            <Image
-              src={produit.images[0]}
-              alt={produit.nom}
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          ) : (
-            <Package size={48} className="text-ocean/30" />
-          )}
+          <ProductImage
+            src={produit.images?.[0]}
+            alt={produit.nom}
+          />
           <div className="absolute top-3 right-3">
             <MonthlyPaymentBadge prixAchat={produit.prix_achat} valeurResiduellePct={produit.valeur_residuelle_pct} />
           </div>

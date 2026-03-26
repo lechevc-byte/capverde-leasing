@@ -4,8 +4,7 @@ import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
 import LeasingConfigurator from '@/components/leasing/LeasingConfigurator';
 import Badge from '@/components/ui/Badge';
 import { formatEuro } from '@/lib/utils';
-import Image from 'next/image';
-import { Package } from 'lucide-react';
+import ProductImage from '@/components/products/ProductImage';
 import type { Metadata } from 'next';
 import type { Produit } from '@/types';
 
@@ -74,18 +73,12 @@ export default async function ProduitPage({ params }: Props) {
         <div className="lg:col-span-3 space-y-8">
           {/* Image */}
           <div className="bg-gradient-to-br from-light to-gray-100 rounded-xl h-64 sm:h-96 flex items-center justify-center overflow-hidden relative">
-            {produit.images && produit.images.length > 0 ? (
-              <Image
-                src={produit.images[0]}
-                alt={produit.nom}
-                fill
-                className="object-cover rounded-xl"
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                priority
-              />
-            ) : (
-              <Package size={80} className="text-ocean/20" />
-            )}
+            <ProductImage
+              src={produit.images?.[0]}
+              alt={produit.nom}
+              priority
+              className="rounded-xl"
+            />
           </div>
 
           {/* Info */}
