@@ -1,0 +1,401 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
+import { calculerLeasing } from '@/lib/leasing/calculator';
+import { formatEuro } from '@/lib/utils';
+import { cn } from '@/lib/utils';
+import Button from '@/components/ui/Button';
+import Badge from '@/components/ui/Badge';
+import { ILES_CAP_VERT } from '@/types';
+import { ArrowLeft, ArrowRight, Check, Loader2, Edit3, Upload, X as XIcon, FileText } from 'lucide-react';
+
+const CLIENT_TYPES = [
+  { value: 'entreprise', label: 'Entreprise' },
+  { value: 'profession_liberale', label: 'Profession libérale' },
+  { value: 'administration', label: 'Administration' },
+  { value: 'particulier_pro', label: 'Particulier professionnel' },
+];
+
+const STEPS = ['Récapitulatif', 'Informations', 'Documents', 'Confirmation'];
+
+export default function DemandForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const produitId = searchParams.get('produit') || '';
+  const dureeParam = Number(searchParams.get('duree')) || 36;
+
+  const [step, setStep] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [produit, setProduit] = useState<{ nom: string; prix_achat: number; valeur_residuelle_pct: number } | null>(null);
+  const [duree] = useState(dureeParam);
+  const [form, setForm] = useState({
+    prenom: '',
+    nom: '',
+    email: '',
+    telephone: '',
+    type_client: '',
+    nom_entreprise: '',
+    siret: '',
+    secteur: '',
+    ile: '',
+    accepte: false,
+  });
+  const [documents, setDocuments] = useState<{ [key: string]: File | null }>({
+    identite: null,
+    bilan: null,
+    releve: null,
+  });
+
+  useEffect(() => {
+    if (!produitId) return;
+    const supabase = createClient();
+    supabase
+      .from('produits')
+      .select('nom, prix_achat, valeur_residuelle_pct')
+      .eq('id', produitId)
+      .single()
+      .then(({ data }) => {
+        if (data) setProduit(data);
+      });
+  }, [produitId]);
+
+  const result = produit
+    ? calculerLeasing({
+        prixBien: produit.prix_achat,
+        dureeMois: duree,
+        valeurResiduellePct: produit.valeur_residuelle_pct,
+      })
+    : null;
+
+  const updateField = (field: string, value: string | boolean) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const canProceed = () => {
+    if (step === 1) {
+      return form.prenom && form.nom && form.email && form.telephone && form.type_client && form.ile;
+    }
+    if (step === 3) {
+      return form.accepte;
+    }
+    return true;
+  };
+
+  const handleFileChange = (key: string, file: File | null) => {
+    setDocuments((prev) => ({ ...prev, [key]: file }));
+  };
+
+  const handleSubmit = async () => {
+    if (!produit || !result) return;
+    setLoading(true);
+
+    try {
+      const supabase = createClient();
+
+      // Upload documents if any
+      const uploadedUrls: string[] = [];
+      for (const [key, file] of Object.entries(documents)) {
+        if (!file) continue;
+        const ext = file.name.split('.').pop();
+        const path = `demandes/${Date.now()}-${key}.${ext}`;
+        const { error: uploadError } = await supabase.storage
+          .from('documents')
+          .upload(path, file);
+        if (!uploadError) {
+          const { data: urlData } = supabase.storage.from('documents').getPublicUrl(path);
+          uploadedUrls.push(urlData.publicUrl);
+        }
+      }
+
+      const { data, error } = await supabase.from('demandes').insert({
+        produit_id: produitId || null,
+        prix_bien: produit.prix_achat,
+        duree_mois: duree,
+        loyer_mensuel_estime: result.loyerMensuel,
+        valeur_residuelle: result.valeurResiduelle,
+        client_prenom: form.prenom,
+        client_nom: form.nom,
+        client_email: form.email,
+        client_telephone: form.telephone,
+        client_type: form.type_client,
+        client_nom_entreprise: form.nom_entreprise || null,
+        client_siret: form.siret || null,
+        client_secteur: form.secteur || null,
+        client_ile: form.ile,
+        documents_urls: uploadedUrls.length > 0 ? uploadedUrls : null,
+      }).select('reference').single();
+
+      if (error) throw error;
+      const ref = data?.reference || '';
+      router.push(`/demande/confirmation${ref ? `?ref=${encodeURIComponent(ref)}` : ''}`);
+    } catch (err) {
+      console.error(err);
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto">
+      {/* Progress bar */}
+      <div className="flex items-center gap-2 mb-8">
+        {STEPS.map((s, i) => (
+          <div key={s} className="flex-1">
+            <div
+              className={cn(
+                'h-2 rounded-full transition-colors',
+                i <= step ? 'bg-ocean' : 'bg-gray-200'
+              )}
+            />
+            <p className={cn(
+              'text-xs mt-1 text-center',
+              i <= step ? 'text-ocean font-medium' : 'text-gray-text'
+            )}>
+              {s}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Step 0 — Recap */}
+      {step === 0 && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
+          <h2 className="font-sora text-xl font-bold text-navy">Récapitulatif de votre leasing</h2>
+          {produit && result ? (
+            <>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-text">Produit</span>
+                  <span className="font-semibold text-navy">{produit.nom}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-text">Valeur du bien</span>
+                  <span className="font-semibold text-navy">{formatEuro(produit.prix_achat)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-text">Durée</span>
+                  <span className="font-semibold text-navy">{duree} mois</span>
+                </div>
+                <div className="flex justify-between text-lg border-t border-gray-100 pt-3">
+                  <span className="text-gray-text">Loyer mensuel</span>
+                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mois</span>
+                </div>
+              </div>
+              <button
+                onClick={() => router.back()}
+                className="text-sm text-ocean hover:underline flex items-center gap-1"
+              >
+                <Edit3 size={14} /> Modifier la configuration
+              </button>
+            </>
+          ) : (
+            <p className="text-gray-text">Chargement du produit...</p>
+          )}
+        </div>
+      )}
+
+      {/* Step 1 — Informations */}
+      {step === 1 && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
+          <h2 className="font-sora text-xl font-bold text-navy">Vos informations</h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="prenom" className="block text-sm font-medium text-navy mb-1">Prénom *</label>
+              <input id="prenom" type="text" value={form.prenom} onChange={(e) => updateField('prenom', e.target.value)}
+                className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+            </div>
+            <div>
+              <label htmlFor="nom" className="block text-sm font-medium text-navy mb-1">Nom *</label>
+              <input id="nom" type="text" value={form.nom} onChange={(e) => updateField('nom', e.target.value)}
+                className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-navy mb-1">Email *</label>
+            <input id="email" type="email" value={form.email} onChange={(e) => updateField('email', e.target.value)}
+              className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+          </div>
+
+          <div>
+            <label htmlFor="telephone" className="block text-sm font-medium text-navy mb-1">Téléphone *</label>
+            <input id="telephone" type="tel" value={form.telephone} onChange={(e) => updateField('telephone', e.target.value)}
+              className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+          </div>
+
+          <div>
+            <label htmlFor="type_client" className="block text-sm font-medium text-navy mb-1">Type de client *</label>
+            <select id="type_client" value={form.type_client} onChange={(e) => updateField('type_client', e.target.value)}
+              className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean">
+              <option value="">Sélectionner...</option>
+              {CLIENT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+
+          {form.type_client === 'entreprise' && (
+            <div className="space-y-4 border-t border-gray-100 pt-4">
+              <div>
+                <label htmlFor="nom_entreprise" className="block text-sm font-medium text-navy mb-1">Nom de l&apos;entreprise</label>
+                <input id="nom_entreprise" type="text" value={form.nom_entreprise} onChange={(e) => updateField('nom_entreprise', e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+              </div>
+              <div>
+                <label htmlFor="siret" className="block text-sm font-medium text-navy mb-1">NIF (numéro fiscal)</label>
+                <input id="siret" type="text" value={form.siret} onChange={(e) => updateField('siret', e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+              </div>
+              <div>
+                <label htmlFor="secteur" className="block text-sm font-medium text-navy mb-1">Secteur d&apos;activité</label>
+                <input id="secteur" type="text" value={form.secteur} onChange={(e) => updateField('secteur', e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
+              </div>
+            </div>
+          )}
+
+          <div>
+            <label htmlFor="ile" className="block text-sm font-medium text-navy mb-1">Île du Cap-Vert *</label>
+            <select id="ile" value={form.ile} onChange={(e) => updateField('ile', e.target.value)}
+              className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean">
+              <option value="">Sélectionner...</option>
+              {ILES_CAP_VERT.map((ile) => (
+                <option key={ile} value={ile}>{ile}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* Step 2 — Documents */}
+      {step === 2 && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
+          <h2 className="font-sora text-xl font-bold text-navy">Documents</h2>
+          <p className="text-sm text-gray-text">
+            Documents facultatifs — accélèrent le traitement de votre dossier.
+          </p>
+
+          <div className="space-y-4">
+            {[
+              { key: 'identite', label: "Carte d'identité ou passeport" },
+              { key: 'bilan', label: 'Dernier bilan / déclaration fiscale' },
+              { key: 'releve', label: 'Relevé bancaire (3 derniers mois)' },
+            ].map((doc) => (
+              <div key={doc.key} className="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-ocean/50 transition-colors relative">
+                {documents[doc.key] ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <FileText size={16} className="text-ocean" />
+                    <span className="text-sm font-medium text-navy">{documents[doc.key]!.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleFileChange(doc.key, null)}
+                      className="p-1 rounded hover:bg-gray-100"
+                    >
+                      <XIcon size={14} className="text-gray-400" />
+                    </button>
+                  </div>
+                ) : (
+                  <label className="cursor-pointer block">
+                    <Upload size={20} className="mx-auto mb-1 text-gray-400" />
+                    <p className="text-sm font-medium text-navy mb-1">{doc.label}</p>
+                    <p className="text-xs text-gray-text">Cliquez pour sélectionner (PDF, JPG, PNG)</p>
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept=".pdf,.jpg,.jpeg,.png"
+                      onChange={(e) => handleFileChange(doc.key, e.target.files?.[0] || null)}
+                    />
+                  </label>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <Badge variant="info">Optionnel — vous pourrez fournir ces documents plus tard</Badge>
+        </div>
+      )}
+
+      {/* Step 3 — Confirmation */}
+      {step === 3 && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
+          <h2 className="font-sora text-xl font-bold text-navy">Confirmer votre demande</h2>
+
+          <div className="bg-light rounded-lg p-4 space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-gray-text">Nom</span>
+              <span className="font-medium">{form.prenom} {form.nom}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-text">Email</span>
+              <span className="font-medium">{form.email}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-text">Téléphone</span>
+              <span className="font-medium">{form.telephone}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-text">Île</span>
+              <span className="font-medium">{form.ile}</span>
+            </div>
+            {produit && result && (
+              <>
+                <div className="border-t border-gray-200 pt-2 flex justify-between">
+                  <span className="text-gray-text">Produit</span>
+                  <span className="font-medium">{produit.nom}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-text">Loyer mensuel</span>
+                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mois</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-text">Durée</span>
+                  <span className="font-medium">{duree} mois</span>
+                </div>
+              </>
+            )}
+          </div>
+
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={form.accepte}
+              onChange={(e) => updateField('accepte', e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-gray-300 text-ocean focus:ring-ocean"
+            />
+            <span className="text-sm text-gray-text">
+              J&apos;accepte que mes données soient transmises à la banque partenaire pour l&apos;étude de mon dossier de leasing.
+            </span>
+          </label>
+        </div>
+      )}
+
+      {/* Navigation */}
+      <div className="flex justify-between mt-6">
+        {step > 0 ? (
+          <Button variant="ghost" onClick={() => setStep(step - 1)}>
+            <ArrowLeft size={16} />
+            Retour
+          </Button>
+        ) : (
+          <div />
+        )}
+
+        {step < 3 ? (
+          <Button onClick={() => setStep(step + 1)} disabled={!canProceed()}>
+            Suivant
+            <ArrowRight size={16} />
+          </Button>
+        ) : (
+          <Button onClick={handleSubmit} disabled={!canProceed() || loading}>
+            {loading ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />}
+            Envoyer ma demande
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
