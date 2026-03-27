@@ -24,7 +24,7 @@ export default function ProductImage({ src, alt, priority, className = '' }: Pro
       alt={alt}
       loading={priority ? 'eager' : 'lazy'}
       onError={() => setError(true)}
-      className={`w-full h-full object-cover ${className}`}
+      className={`w-full h-full object-contain ${className}`}
     />
   );
 }
