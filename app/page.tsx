@@ -32,13 +32,13 @@ export default async function HomePage() {
       <FeaturedProducts produits={featuredProducts} />
       <BenefitsSection />
 
-      {/* CTA final — orçamento personalizado */}
-      <section className="py-16 sm:py-20 bg-navy">
+      {/* CTA final */}
+      <section className="py-16 sm:py-20 bg-light">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy mb-4">
             Tem uma necessidade específica?
           </h2>
-          <p className="text-white/60 mb-8 text-lg">
+          <p className="text-gray-text mb-8 text-lg">
             Podemos financiar tudo. Descreva o seu projeto e receba um orçamento personalizado em 48h.
           </p>
           <a href="/contacto">
