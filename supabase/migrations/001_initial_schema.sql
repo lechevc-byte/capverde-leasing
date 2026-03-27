@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════
--- CATÉGORIES
+-- CATEGORIAS
 -- ═══════════════════════════════════════════════════
 CREATE TABLE categories (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -17,11 +17,11 @@ CREATE TABLE categories (
 );
 
 INSERT INTO categories (slug, nom, nom_pt, description, icone, commission_min, commission_max, ordre) VALUES
-  ('vehicules',    'Véhicules',     'Veículos',    'Voitures de société, pick-ups, minibus, utilitaires', '🚗', 5.0, 6.0, 1),
-  ('informatique', 'Informatique',  'Informática', 'PC, serveurs, NAS, switches, bornes Wi-Fi',           '💻', 6.0, 7.0, 2),
-  ('telephonie',   'Téléphonie',    'Telefonia',   'Smartphones, IPBX, tablettes, terminaux paiement',   '📱', 6.0, 8.0, 3),
-  ('mobilier',     'Mobilier',      'Mobiliário',  'Mobilier bureau, hôtelier, restaurant, open-space',   '🪑', 5.0, 7.0, 4),
-  ('chr',          'Matériel CHR',  'Equipamentos CHR', 'Fours pro, réfrigération, machines café, hottes', '🍽️', 6.0, 8.0, 5);
+  ('vehicules',    'Veículos',          'Veículos',          'Carros de empresa, pick-ups, minibus, utilitários',          '🚗', 5.0, 6.0, 1),
+  ('informatique', 'Informática',       'Informática',       'PC, servidores, NAS, switches, pontos Wi-Fi',               '💻', 6.0, 7.0, 2),
+  ('telephonie',   'Telefonia',         'Telefonia',         'Smartphones, IPBX, tablets, terminais de pagamento',        '📱', 6.0, 8.0, 3),
+  ('mobilier',     'Mobiliário',        'Mobiliário',        'Mobiliário de escritório, hoteleiro, restaurante, open-space','🪑', 5.0, 7.0, 4),
+  ('chr',          'Equipamento CHR',   'Equipamento CHR',   'Fornos profissionais, refrigeração, máquinas de café',      '🍽️', 6.0, 8.0, 5);
 
 -- ═══════════════════════════════════════════════════
 -- PRODUITS
@@ -49,7 +49,7 @@ CREATE TABLE produits (
 );
 
 -- ═══════════════════════════════════════════════════
--- PROFILS UTILISATEURS (étend auth.users)
+-- PERFIS DE UTILIZADORES (estende auth.users)
 -- ═══════════════════════════════════════════════════
 CREATE TABLE profils (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -65,7 +65,7 @@ CREATE TABLE profils (
 );
 
 -- ═══════════════════════════════════════════════════
--- DEMANDES DE LEASING
+-- PEDIDOS DE LEASING
 -- ═══════════════════════════════════════════════════
 CREATE TABLE demandes (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -112,7 +112,7 @@ CREATE TRIGGER set_reference
   FOR EACH ROW EXECUTE FUNCTION generate_reference();
 
 -- ═══════════════════════════════════════════════════
--- SIMULATIONS
+-- SIMULAÇÕES
 -- ═══════════════════════════════════════════════════
 CREATE TABLE simulations (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -149,56 +149,56 @@ CREATE POLICY "categories_public_read" ON categories FOR SELECT USING (actif = t
 CREATE POLICY "produits_public_read" ON produits FOR SELECT USING (actif = true);
 
 -- ═══════════════════════════════════════════════════
--- DONNÉES DE TEST
+-- DADOS DE TESTE
 -- ═══════════════════════════════════════════════════
 
--- Véhicules
+-- Veículos
 INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, specifications) VALUES
-  ((SELECT id FROM categories WHERE slug='vehicules'), 'toyota-hilux-4x4', 'Toyota Hilux 4×4 Double Cabine', 'Toyota', 'Hilux', 'Pick-up robuste idéal pour le BTP et les îles reculées', 42000, '{24,36,48,60}', true,
-   '{"moteur":"2.8L Diesel","puissance":"204 ch","transmission":"4WD","places":5,"charge_utile":"1000 kg"}'),
-  ((SELECT id FROM categories WHERE slug='vehicules'), 'mitsubishi-l200', 'Mitsubishi L200 Utilitaire', 'Mitsubishi', 'L200', 'Utilitaire polyvalent pour sociétés de services', 35000, '{24,36,48,60}', false,
-   '{"moteur":"2.4L Diesel","puissance":"154 ch","transmission":"4WD","places":5}'),
-  ((SELECT id FROM categories WHERE slug='vehicules'), 'minibus-toyota-hiace', 'Toyota HiAce Minibus 15 places', 'Toyota', 'HiAce', 'Transport de personnels, navettes hôtelières', 55000, '{36,48,60}', true,
-   '{"places":15,"moteur":"2.8L Diesel","climatisation":true,"usage":"Transport collectif"}');
+  ((SELECT id FROM categories WHERE slug='vehicules'), 'toyota-hilux-4x4', 'Toyota Hilux 4×4 Cabine Dupla', 'Toyota', 'Hilux', 'Pick-up robusto ideal para construção civil e ilhas remotas', 42000, '{24,36,48,60}', true,
+   '{"motor":"2.8L Diesel","potencia":"204 cv","transmissao":"4WD","lugares":5,"carga_util":"1000 kg"}'),
+  ((SELECT id FROM categories WHERE slug='vehicules'), 'mitsubishi-l200', 'Mitsubishi L200 Utilitário', 'Mitsubishi', 'L200', 'Utilitário polivalente para empresas de serviços', 35000, '{24,36,48,60}', false,
+   '{"motor":"2.4L Diesel","potencia":"154 cv","transmissao":"4WD","lugares":5}'),
+  ((SELECT id FROM categories WHERE slug='vehicules'), 'minibus-toyota-hiace', 'Toyota HiAce Minibus 15 lugares', 'Toyota', 'HiAce', 'Transporte de pessoal e shuttles hoteleiros', 55000, '{36,48,60}', true,
+   '{"lugares":15,"motor":"2.8L Diesel","ar_condicionado":true,"uso":"Transporte coletivo"}');
 
--- Informatique
+-- Informática
 INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, specifications) VALUES
-  ((SELECT id FROM categories WHERE slug='informatique'), 'dell-latitude-14-pro', 'Dell Latitude 14 Pro (lot 10)', 'Dell', 'Latitude 14', 'Pack 10 laptops professionnels pour équipe commerciale', 12000, '{24,36,48}', true,
-   '{"quantite":10,"processeur":"Intel Core i5","ram":"16 Go","stockage":"512 Go SSD","ecran":"14 pouces"}'),
-  ((SELECT id FROM categories WHERE slug='informatique'), 'serveur-hp-proliant', 'HP ProLiant DL380 Serveur', 'HP', 'ProLiant DL380', 'Serveur rack haute performance pour PME', 18000, '{36,48,60}', false,
-   '{"processeur":"2x Intel Xeon","ram":"64 Go","stockage":"4x 2To HDD","baie":"2U rack"}'),
-  ((SELECT id FROM categories WHERE slug='informatique'), 'switch-cisco-24ports', 'Cisco Catalyst Switch 24 ports', 'Cisco', 'Catalyst 2960', 'Infrastructure réseau pour bureau ou hôtel', 8500, '{24,36,48}', false,
-   '{"ports":24,"poe":true,"vitesse":"1 Gbps","manageable":true}');
+  ((SELECT id FROM categories WHERE slug='informatique'), 'dell-latitude-14-pro', 'Dell Latitude 14 Pro (lote 10)', 'Dell', 'Latitude 14', 'Pack 10 portáteis profissionais para equipa comercial', 12000, '{24,36,48}', true,
+   '{"quantidade":10,"processador":"Intel Core i5","ram":"16 GB","armazenamento":"512 GB SSD","ecra":"14 polegadas"}'),
+  ((SELECT id FROM categories WHERE slug='informatique'), 'serveur-hp-proliant', 'HP ProLiant DL380 Servidor', 'HP', 'ProLiant DL380', 'Servidor rack de alto desempenho para PME', 18000, '{36,48,60}', false,
+   '{"processador":"2x Intel Xeon","ram":"64 GB","armazenamento":"4x 2TB HDD","rack":"2U"}'),
+  ((SELECT id FROM categories WHERE slug='informatique'), 'switch-cisco-24ports', 'Cisco Catalyst Switch 24 portas', 'Cisco', 'Catalyst 2960', 'Infraestrutura de rede para escritório ou hotel', 8500, '{24,36,48}', false,
+   '{"portas":24,"poe":true,"velocidade":"1 Gbps","gerenciavel":true}');
 
--- Téléphonie
+-- Telefonia
 INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, specifications) VALUES
-  ((SELECT id FROM categories WHERE slug='telephonie'), 'iphone-15-pro-lot', 'iPhone 15 Pro (lot 20)', 'Apple', 'iPhone 15 Pro', 'Fleet mobile pour équipe commerciale ou hôtelière', 28000, '{24,36}', true,
-   '{"quantite":20,"stockage":"256 Go","couleur":"Titane naturel","garantie":"24 mois"}'),
-  ((SELECT id FROM categories WHERE slug='telephonie'), 'ipbx-grandstream', 'Centrale IPBX Grandstream UCM6302', 'Grandstream', 'UCM6302', 'Centrale téléphonique IP pour PME jusqu à 100 postes', 4500, '{24,36,48}', false,
-   '{"postes_max":100,"extensions_sip":true,"ivr":true,"enregistrement":true}'),
-  ((SELECT id FROM categories WHERE slug='telephonie'), 'tablettes-samsung-lot', 'Samsung Galaxy Tab A9 (lot 15)', 'Samsung', 'Galaxy Tab A9', 'Tablettes pour réception hôtelière ou point de vente', 9000, '{24,36}', false,
-   '{"quantite":15,"ecran":"10.5 pouces","stockage":"128 Go","wifi":true,"4g":true}');
+  ((SELECT id FROM categories WHERE slug='telephonie'), 'iphone-15-pro-lot', 'iPhone 15 Pro (lote 20)', 'Apple', 'iPhone 15 Pro', 'Frota móvel para equipa comercial ou hoteleira', 28000, '{24,36}', true,
+   '{"quantidade":20,"armazenamento":"256 GB","cor":"Titânio natural","garantia":"24 meses"}'),
+  ((SELECT id FROM categories WHERE slug='telephonie'), 'ipbx-grandstream', 'Central IPBX Grandstream UCM6302', 'Grandstream', 'UCM6302', 'Central telefónica IP para PME até 100 extensões', 4500, '{24,36,48}', false,
+   '{"extensoes_max":100,"extensoes_sip":true,"ivr":true,"gravacao":true}'),
+  ((SELECT id FROM categories WHERE slug='telephonie'), 'tablettes-samsung-lot', 'Samsung Galaxy Tab A9 (lote 15)', 'Samsung', 'Galaxy Tab A9', 'Tablets para receção hoteleira ou ponto de venda', 9000, '{24,36}', false,
+   '{"quantidade":15,"ecra":"10.5 polegadas","armazenamento":"128 GB","wifi":true,"4g":true}');
 
--- Mobilier
+-- Mobiliário
 INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, specifications) VALUES
-  ((SELECT id FROM categories WHERE slug='mobilier'), 'agencement-bureau-openspace', 'Agencement Open-Space 20 postes', 'Kinnarps', 'Suite Pro', 'Mobilier complet pour open-space professionnel', 22000, '{36,48,60}', true,
-   '{"postes":20,"inclus":"bureaux, caissons, cloisons acoustiques, chaises ergonomiques","style":"Contemporain"}'),
-  ((SELECT id FROM categories WHERE slug='mobilier'), 'mobilier-chambre-hotel', 'Kit Chambre Hôtelière Standard (10 chambres)', 'Custom', 'Hotel Line', 'Mobilier complet pour 10 chambres hôtelières 3 étoiles', 35000, '{36,48,60}', true,
-   '{"chambres":10,"inclus":"lits, chevets, bureaux, armoires, têtes de lit","norme":"NF Hôtellerie"}'),
-  ((SELECT id FROM categories WHERE slug='mobilier'), 'salle-conference', 'Salle de Conférence 20 personnes', 'Steelcase', 'Meeting Pro', 'Table ovale + fauteuils + écran interactif 75 pouces', 18000, '{36,48}', false,
-   '{"capacite":20,"ecran":"75 pouces 4K","visioconference":true,"acoustique":"traitement compris"}');
+  ((SELECT id FROM categories WHERE slug='mobilier'), 'agencement-bureau-openspace', 'Open-Space 20 postos de trabalho', 'Kinnarps', 'Suite Pro', 'Mobiliário completo para open-space profissional', 22000, '{36,48,60}', true,
+   '{"postos":20,"inclui":"secretárias, gaveteiros, divisórias acústicas, cadeiras ergonómicas","estilo":"Contemporâneo"}'),
+  ((SELECT id FROM categories WHERE slug='mobilier'), 'mobilier-chambre-hotel', 'Kit Quarto de Hotel Standard (10 quartos)', 'Custom', 'Hotel Line', 'Mobiliário completo para 10 quartos de hotel 3 estrelas', 35000, '{36,48,60}', true,
+   '{"quartos":10,"inclui":"camas, mesas de cabeceira, secretárias, armários, cabeceiras","norma":"Hotelaria 3 estrelas"}'),
+  ((SELECT id FROM categories WHERE slug='mobilier'), 'salle-conference', 'Sala de Conferências 20 pessoas', 'Steelcase', 'Meeting Pro', 'Mesa oval + cadeirões + ecrã interativo 75 polegadas', 18000, '{36,48}', false,
+   '{"capacidade":20,"ecra":"75 polegadas 4K","videoconferencia":true,"acustica":"tratamento incluído"}');
 
--- Matériel CHR
+-- Equipamento CHR
 INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, images, specifications) VALUES
-  ((SELECT id FROM categories WHERE slug='chr'), 'four-convection-vapeur', 'Four à Convection / Vapeur 4 plateaux', 'Leasymat', 'CV-4GN', 'Four professionnel convection/vapeur pour restaurant', 684, '{24,36,48}', true,
+  ((SELECT id FROM categories WHERE slug='chr'), 'four-convection-vapeur', 'Forno de Convecção/Vapor 4 tabuleiros', 'Leasymat', 'CV-4GN', 'Forno profissional convecção/vapor para restaurante', 684, '{24,36,48}', true,
    ARRAY['https://leasymat.com/wp-content/uploads/2025/04/sp-005-61656e68b2750.jpg'],
-   '{"plateaux":4,"format":"60x40 cm","alimentation":"400V","modes":"Convection, Vapeur, Mixte","certif":"CE"}'),
-  ((SELECT id FROM categories WHERE slug='chr'), 'vitrine-refrigeree-morris', 'Vitrine Réfrigérée Morris 2.0', 'Leasymat', 'Morris 2.0', 'Vitrine réfrigérée professionnelle pour boulangerie-pâtisserie', 2338, '{24,36,48}', false,
+   '{"tabuleiros":4,"formato":"60x40 cm","alimentacao":"400V","modos":"Convecção, Vapor, Misto","certificacao":"CE"}'),
+  ((SELECT id FROM categories WHERE slug='chr'), 'vitrine-refrigeree-morris', 'Vitrina Refrigerada Morris 2.0', 'Leasymat', 'Morris 2.0', 'Vitrina refrigerada profissional para pastelaria', 2338, '{24,36,48}', false,
    ARRAY['https://leasymat.com/wp-content/uploads/2025/04/7486.0075-9556-scaled.jpg'],
-   '{"longueur":"2 mètres","temperature":"2-8°C","eclairage":"LED","niveaux":3,"degivrage":"Automatique"}'),
-  ((SELECT id FROM categories WHERE slug='chr'), 'machine-expresso-3-pistons', 'Machine à Expresso 3 pistons – 540 tasses/h', 'Leasymat', 'EX-3P', 'Machine expresso professionnelle haut volume pour hôtel ou restaurant', 2069, '{24,36,48}', true,
+   '{"comprimento":"2 metros","temperatura":"2-8°C","iluminacao":"LED","niveis":3,"descongelacao":"Automática"}'),
+  ((SELECT id FROM categories WHERE slug='chr'), 'machine-expresso-3-pistons', 'Máquina de Expresso 3 pistões – 540 chávenas/h', 'Leasymat', 'EX-3P', 'Máquina de expresso profissional de alto volume para hotel ou restaurante', 2069, '{24,36,48}', true,
    ARRAY['https://leasymat.com/wp-content/uploads/2025/04/sp-1005-09100003.jpg'],
-   '{"capacite":"540 tasses/heure","pistons":3,"nettoyage":"Semi-automatique","usage":"Hôtel, Restaurant"}'),
-  ((SELECT id FROM categories WHERE slug='chr'), 'cuisiniere-5-bruleurs', 'Cuisinière Professionnelle 5 brûleurs gaz', 'Leasymat', 'CUI-5BR', 'Cuisinière gaz 5 feux avec four pour cuisine professionnelle', 3575, '{24,36,48}', true,
+   '{"capacidade":"540 chávenas/hora","pistoes":3,"limpeza":"Semiautomática","uso":"Hotel, Restaurante"}'),
+  ((SELECT id FROM categories WHERE slug='chr'), 'cuisiniere-5-bruleurs', 'Fogão Profissional 5 queimadores a gás', 'Leasymat', 'CUI-5BR', 'Fogão a gás 5 queimadores com forno para cozinha profissional', 3575, '{24,36,48}', true,
    ARRAY['https://leasymat.com/wp-content/uploads/2025/04/7003.0920-9888.jpg'],
-   '{"bruleurs":5,"type":"Gaz","four":"Intégré","usage":"Restaurant, Collectivité"}');
+   '{"queimadores":5,"tipo":"Gás","forno":"Integrado","uso":"Restaurante, Coletividade"}');
