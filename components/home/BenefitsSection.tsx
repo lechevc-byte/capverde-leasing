@@ -38,51 +38,83 @@ const benefits = [
 
 export default function BenefitsSection() {
   return (
-    <section className="bg-navy py-20 sm:py-28">
+    <section style={{ background: '#00264D' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 sm:mb-20">
+        {/* Header */}
+        <div className="text-center" style={{ padding: '80px 0 60px' }}>
           <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
             Porquê o leasing?
           </h2>
-          <p className="mt-4 text-white/50 text-lg">
+          <p className="mt-4 text-lg" style={{ color: 'rgba(255,255,255,0.5)' }}>
             5 vantagens concretas para a sua empresa
           </p>
         </div>
 
-        <div className="space-y-20 sm:space-y-28">
-          {benefits.map((b, i) => {
-            const isEven = i % 2 === 0;
-            return (
+        {/* Rows */}
+        {benefits.map((b, i) => {
+          const isEven = i % 2 !== 0;
+          return (
+            <div key={b.number}>
               <div
-                key={b.number}
-                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-10 md:gap-16`}
+                className={`flex flex-col ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'} items-center`}
+                style={{ minHeight: '300px', padding: '60px 0' }}
               >
                 {/* Text side */}
-                <div className="flex-1 space-y-4">
-                  <span className="font-sora text-sm font-bold text-gold tracking-widest uppercase">
+                <div className="flex-1" style={{ padding: '0 20px' }}>
+                  <p
+                    className="font-sora font-bold"
+                    style={{ fontSize: '13px', color: '#C9960C', letterSpacing: '4px', marginBottom: '8px' }}
+                  >
                     {b.number}
-                  </span>
-                  <h3 className="font-sora text-2xl sm:text-3xl font-bold text-white">
+                  </p>
+                  <h3
+                    className="font-sora text-white"
+                    style={{ fontSize: '36px', fontWeight: 800, marginBottom: '16px' }}
+                  >
                     {b.title}
                   </h3>
-                  <p className="text-white/60 text-lg leading-relaxed">
+                  <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', maxWidth: '420px', lineHeight: 1.7 }}>
                     {b.text}
                   </p>
                 </div>
 
                 {/* Stat side */}
-                <div className="flex-1 flex flex-col items-center justify-center">
-                  <span className="font-sora font-extrabold text-gold leading-none" style={{ fontSize: 'clamp(100px, 15vw, 180px)' }}>
+                <div className="flex-1 flex flex-col items-center justify-center" style={{ padding: '20px 0' }}>
+                  <span
+                    className="font-sora text-center"
+                    style={{
+                      fontSize: 'clamp(80px, 12vw, 140px)',
+                      fontWeight: 900,
+                      color: '#C9960C',
+                      lineHeight: 1,
+                    }}
+                  >
                     {b.stat}
                   </span>
-                  <span className="text-white/40 text-sm font-medium uppercase tracking-wider mt-2">
+                  <span
+                    style={{
+                      fontSize: '12px',
+                      letterSpacing: '3px',
+                      color: 'rgba(255,255,255,0.5)',
+                      textTransform: 'uppercase',
+                      marginTop: '8px',
+                    }}
+                  >
                     {b.statLabel}
                   </span>
                 </div>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Separator */}
+              {i < benefits.length - 1 && (
+                <div style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }} />
+              )}
+            </div>
+          );
+        })}
+
+        {/* Bottom spacing */}
+        <div style={{ height: '80px' }} />
       </div>
     </section>
   );
