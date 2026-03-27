@@ -1,7 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import Hero from '@/components/home/Hero';
 import CategoryGrid from '@/components/home/CategoryGrid';
-import HowItWorks from '@/components/home/HowItWorks';
 import BenefitsSection from '@/components/home/BenefitsSection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import TrustBanner from '@/components/home/TrustBanner';
@@ -29,7 +28,6 @@ export default async function HomePage() {
     <>
       <Hero />
       <CategoryGrid />
-      <HowItWorks />
       <BenefitsSection />
       <TrustBanner />
       <FeaturedProducts produits={featuredProducts} />

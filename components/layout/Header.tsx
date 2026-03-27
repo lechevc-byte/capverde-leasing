@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 import MobileMenu from './MobileMenu';
 
 const navigation = [
-  { name: 'Como funciona', href: '/#como-funciona' },
+  { name: 'Como funciona', href: '/como-funciona' },
   { name: 'Soluções', href: '/categorias' },
   { name: 'Contacto', href: '/contacto' },
 ];
