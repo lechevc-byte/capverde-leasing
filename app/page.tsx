@@ -28,8 +28,8 @@ export default async function HomePage() {
     <>
       <Hero />
       <CategoryGrid />
-      <FeaturedProducts produits={featuredProducts} />
       <TrustBanner />
+      <FeaturedProducts produits={featuredProducts} />
       <BenefitsSection />
 
       {/* CTA final — orçamento personalizado */}
