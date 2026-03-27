@@ -1,20 +1,20 @@
-import { Search, FileText, PackageCheck } from 'lucide-react';
+import { MessageSquare, Handshake, PackageCheck } from 'lucide-react';
 
 const steps = [
   {
-    icon: Search,
-    title: 'Escolho o meu equipamento',
-    description: 'Percorro as categorias e configuro a duração do leasing.',
+    icon: MessageSquare,
+    title: 'Diga-nos o que precisa',
+    description: 'Veículo, equipamento informático, cozinha profissional, mobiliário — descreva simplesmente o seu projeto.',
   },
   {
-    icon: FileText,
-    title: 'Submeto o meu pedido',
-    description: 'Preencho o formulário em 4 minutos, com ou sem conta.',
+    icon: Handshake,
+    title: 'Nós tratamos de tudo',
+    description: 'Encontramos o produto junto dos nossos fornecedores parceiros e estruturamos o financiamento com os nossos bancos parceiros.',
   },
   {
     icon: PackageCheck,
-    title: 'Recebo o meu equipamento',
-    description: 'O banco financia, o fornecedor entrega. Tudo simplificado.',
+    title: 'Recebe sem stress',
+    description: 'O banco paga o fornecedor diretamente. Você recebe o equipamento e paga uma renda mensal fixa.',
   },
 ];
 
@@ -27,7 +27,7 @@ export default function HowItWorks() {
             Como funciona?
           </h2>
           <p className="mt-3 text-gray-text">
-            3 passos simples para financiar os seus equipamentos
+            Tratamos de tudo — produto e financiamento
           </p>
         </div>
 

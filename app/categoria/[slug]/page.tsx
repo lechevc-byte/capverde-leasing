@@ -4,7 +4,7 @@ import Link from 'next/link';
 import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
 import ProductGrid from '@/components/products/ProductGrid';
 import Button from '@/components/ui/Button';
-import { ArrowRight, Info } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Category, Produit } from '@/types';
 
@@ -92,20 +92,30 @@ export default async function CategoriePage({ params }: Props) {
         ]}
       />
 
-      <div className="mt-6 mb-6">
+      {/* Banner top */}
+      <div className="mt-6 mb-8 bg-navy rounded-2xl border border-gold/30 p-6 flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex-1">
+          <p className="text-white font-semibold">
+            Não encontra o equipamento exato que precisa?
+          </p>
+          <p className="text-white/60 text-sm mt-1">
+            Nós encontramos por si — junto dos nossos fornecedores parceiros.
+          </p>
+        </div>
+        <Link href="/contacto" className="shrink-0">
+          <Button variant="gold" size="sm">
+            Descrever o meu projeto
+            <ArrowRight size={16} />
+          </Button>
+        </Link>
+      </div>
+
+      <div className="mb-6">
         <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
           {category.nom}
         </h1>
-        {category.description && (
-          <p className="mt-2 text-gray-text text-lg">{category.description}</p>
-        )}
-      </div>
-
-      {/* Bandeau indicatif */}
-      <div className="bg-ocean/5 border border-ocean/20 rounded-xl p-4 mb-8 flex items-start gap-3">
-        <Info size={20} className="text-ocean shrink-0 mt-0.5" />
-        <p className="text-sm text-navy">
-          Estes equipamentos são apresentados a título indicativo. Financiamos todo o tipo de material profissional sob orçamento.
+        <p className="mt-2 text-gray-text text-lg">
+          Exemplos de equipamentos que financiamos nesta categoria. Financiamos também qualquer outro equipamento similar — diga-nos o que precisa.
         </p>
       </div>
 
@@ -114,24 +124,17 @@ export default async function CategoriePage({ params }: Props) {
       {/* CTA bottom */}
       <div className="mt-12 bg-navy rounded-2xl p-8 sm:p-10 text-center">
         <h2 className="font-sora text-xl sm:text-2xl font-bold text-white mb-3">
-          Não encontra o que procura?
+          Precisa de outro modelo ou especificação?
         </h2>
         <p className="text-white/60 mb-6 max-w-md mx-auto">
-          Descreva a sua necessidade — estudamos qualquer pedido de financiamento.
+          Descreva-nos o seu projeto — encontramos o produto e o financiamento para si em 48h.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/pedido">
-            <Button variant="gold" size="lg">
-              Pedir financiamento
-              <ArrowRight size={18} />
-            </Button>
-          </Link>
-          <Link href="/contacto">
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
-              Contactar-nos
-            </Button>
-          </Link>
-        </div>
+        <Link href="/contacto">
+          <Button variant="gold" size="lg">
+            Fazer um pedido à medida
+            <ArrowRight size={18} />
+          </Button>
+        </Link>
       </div>
     </div>
   );

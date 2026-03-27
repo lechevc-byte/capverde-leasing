@@ -2,7 +2,6 @@ import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
 import ProductCard from '@/components/products/ProductCard';
-import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { Truck, Monitor, Smartphone, Armchair, UtensilsCrossed, ArrowRight, type LucideIcon } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -65,13 +64,18 @@ export default async function CategoriesPage() {
       <CategoryBreadcrumb items={[{ label: 'Soluções' }]} />
 
       <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy mt-6 mb-3">
-        Soluções de financiamento
+        Categorias
       </h1>
-      <p className="text-gray-text text-lg mb-2 max-w-2xl">
-        Financiamos qualquer equipamento profissional. Os produtos abaixo são exemplos — contacte-nos para um orçamento à medida.
+      <p className="text-gray-text text-lg mb-4 max-w-2xl">
+        Não encontra o que procura? Não há problema. Financiamos qualquer equipamento profissional. Contacte-nos e tratamos de tudo — produto e financiamento.
       </p>
       <div className="mb-12">
-        <Badge variant="info">B2B &middot; B2G &middot; Profissões liberais</Badge>
+        <Link href="/contacto">
+          <Button variant="gold" size="sm">
+            Descrever o meu projeto
+            <ArrowRight size={16} />
+          </Button>
+        </Link>
       </div>
 
       <div className="space-y-16">

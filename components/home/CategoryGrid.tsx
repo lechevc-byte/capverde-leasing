@@ -43,8 +43,8 @@ export default function CategoryGrid() {
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
             O que financiamos
           </h2>
-          <p className="mt-3 text-gray-text max-w-xl mx-auto">
-            Qualquer equipamento profissional — os exemplos abaixo são indicativos
+          <p className="mt-3 text-gray-text max-w-2xl mx-auto">
+            Financiamos qualquer equipamento nestas categorias — e muito mais. Contacte-nos para qualquer necessidade específica.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function CategoryGrid() {
                 </div>
                 <h3 className="font-sora font-semibold text-navy mb-1">{cat.nom}</h3>
                 <p className="text-xs text-gray-text line-clamp-2">{cat.description}</p>
-                <p className="mt-3 text-xs font-medium text-ocean">Descobrir soluções &rarr;</p>
+                <p className="mt-3 text-xs font-medium text-ocean">Ver exemplos &rarr;</p>
               </Card>
             </Link>
           ))}

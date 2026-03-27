@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import ProductCard from '@/components/products/ProductCard';
 import Card from '@/components/ui/Card';
-import { ArrowRight, MessageSquare } from 'lucide-react';
+import { ArrowRight, Plus } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import type { Produit } from '@/types';
 
 interface FeaturedProductsProps {
@@ -16,10 +17,10 @@ export default function FeaturedProducts({ produits }: FeaturedProductsProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            Exemplos de equipamentos financiados
+            Exemplos de equipamentos que financiamos
           </h2>
-          <p className="mt-2 text-gray-text">
-            A título indicativo — financiamos muito mais
+          <p className="mt-2 text-gray-text max-w-xl mx-auto">
+            A título indicativo — financiamos qualquer equipamento profissional, mesmo que não esteja aqui.
           </p>
         </div>
 
@@ -29,20 +30,21 @@ export default function FeaturedProducts({ produits }: FeaturedProductsProps) {
           ))}
 
           {/* CTA card */}
-          <Link href="/pedido">
-            <Card hover className="h-full flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-ocean/30 bg-ocean/5">
-              <div className="w-14 h-14 mb-4 bg-ocean/10 rounded-xl flex items-center justify-center">
-                <MessageSquare size={28} className="text-ocean" />
+          <Link href="/contacto">
+            <Card hover className="h-full flex flex-col items-center justify-center p-8 text-center bg-navy border-2 border-gold/30">
+              <div className="w-14 h-14 mb-4 bg-gold/20 rounded-xl flex items-center justify-center">
+                <Plus size={28} className="text-gold" />
               </div>
-              <h3 className="font-sora font-semibold text-navy mb-2">
+              <h3 className="font-sora font-semibold text-white mb-2">
                 O seu equipamento não está aqui?
               </h3>
-              <p className="text-sm text-gray-text mb-4">
-                Financiamos tudo. Peça um orçamento à medida.
+              <p className="text-sm text-white/60 mb-4">
+                Descreva-nos o seu projeto e encontramos o produto e o financiamento para si.
               </p>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold text-ocean">
-                Pedir financiamento <ArrowRight size={16} />
-              </span>
+              <Button variant="gold" size="sm">
+                Descrever o meu projeto
+                <ArrowRight size={16} />
+              </Button>
             </Card>
           </Link>
         </div>
