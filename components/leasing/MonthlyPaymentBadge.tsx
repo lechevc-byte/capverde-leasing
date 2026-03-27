@@ -20,7 +20,7 @@ export default function MonthlyPaymentBadge({
     >
       <span>A partir de</span>
       <span className="text-base font-bold">{formatEuroCompact(loyer)}</span>
-      <span>/mois</span>
+      <span>/mês</span>
     </div>
   );
 }

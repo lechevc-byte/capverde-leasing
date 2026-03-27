@@ -36,7 +36,7 @@ export default function RegisterPage() {
       return;
     }
 
-    router.push('/dashboard');
+    router.push('/painel');
     router.refresh();
   };
 
@@ -44,19 +44,19 @@ export default function RegisterPage() {
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 w-full max-w-md">
         <div className="text-center mb-6">
-          <h1 className="font-sora text-2xl font-bold text-navy">Créer un compte</h1>
-          <p className="text-sm text-gray-text mt-1">Suivez vos demandes de leasing</p>
+          <h1 className="font-sora text-2xl font-bold text-navy">Criar uma conta</h1>
+          <p className="text-sm text-gray-text mt-1">Acompanhe os seus pedidos de leasing</p>
         </div>
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="prenom" className="block text-sm font-medium text-navy mb-1">Prénom</label>
+              <label htmlFor="prenom" className="block text-sm font-medium text-navy mb-1">Nome próprio</label>
               <input id="prenom" type="text" value={form.prenom} onChange={(e) => setForm({ ...form, prenom: e.target.value })} required
                 className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
             </div>
             <div>
-              <label htmlFor="nom" className="block text-sm font-medium text-navy mb-1">Nom</label>
+              <label htmlFor="nom" className="block text-sm font-medium text-navy mb-1">Apelido</label>
               <input id="nom" type="text" value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })} required
                 className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
             </div>
@@ -67,7 +67,7 @@ export default function RegisterPage() {
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-navy mb-1">Mot de passe</label>
+            <label htmlFor="password" className="block text-sm font-medium text-navy mb-1">Palavra-passe</label>
             <input id="password" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required minLength={6}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
           </div>
@@ -76,14 +76,14 @@ export default function RegisterPage() {
 
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? <Loader2 size={16} className="animate-spin" /> : <UserPlus size={16} />}
-            Créer mon compte
+            Criar a minha conta
           </Button>
         </form>
 
         <p className="text-sm text-gray-text text-center mt-4">
-          Déjà un compte ?{' '}
-          <Link href="/auth/login" className="text-ocean font-medium hover:underline">
-            Se connecter
+          Já tem uma conta?{' '}
+          <Link href="/auth/entrar" className="text-ocean font-medium hover:underline">
+            Entrar
           </Link>
         </p>
       </div>

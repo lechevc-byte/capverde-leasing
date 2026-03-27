@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, Calculator, User, LogOut } from 'lucide-react';
+import { Menu, Calculator } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import MobileMenu from './MobileMenu';
 
 const navigation = [
-  { name: 'Catégories', href: '/categories' },
-  { name: 'Simulateur', href: '/simulateur' },
+  { name: 'Categorias', href: '/categorias' },
+  { name: 'Simulador', href: '/simulador' },
+  { name: 'Contacto', href: '/contacto' },
 ];
 
 interface HeaderProps {
@@ -47,38 +48,17 @@ export default function Header({ user }: HeaderProps) {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/simulateur">
+            <Link href="/simulador">
               <Button variant="outline" size="sm" className="border-gold text-gold hover:bg-gold hover:text-white">
                 <Calculator size={16} />
-                Simuler
+                Simular
               </Button>
             </Link>
-            {user ? (
-              <div className="flex items-center gap-3">
-                <Link href="/dashboard">
-                  <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
-                    <User size={16} />
-                    {user.prenom}
-                  </Button>
-                </Link>
-                <form action="/auth/logout" method="post">
-                  <button
-                    type="submit"
-                    className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-                    aria-label="Se déconnecter"
-                  >
-                    <LogOut size={16} />
-                  </button>
-                </form>
-              </div>
-            ) : (
-              <Link href="/auth/login">
-                <Button variant="primary" size="sm">
-                  <User size={16} />
-                  Connexion
-                </Button>
-              </Link>
-            )}
+            <Link href="/contacto">
+              <Button variant="primary" size="sm">
+                Orçamento personalizado
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile hamburger */}

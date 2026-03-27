@@ -34,13 +34,13 @@ export default function ProductFilters({ marques, onFilterChange }: ProductFilte
         onClick={() => setOpen(!open)}
       >
         <SlidersHorizontal size={18} />
-        Filtres
+        Filtros
       </button>
 
       <div className={`mt-4 space-y-4 ${open ? 'block' : 'hidden md:block'}`}>
         <div>
           <label htmlFor="filter-marque" className="block text-sm font-medium text-navy mb-1">
-            Marque
+            Marca
           </label>
           <select
             id="filter-marque"
@@ -48,7 +48,7 @@ export default function ProductFilters({ marques, onFilterChange }: ProductFilte
             onChange={(e) => setMarque(e.target.value)}
             className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean"
           >
-            <option value="">Toutes</option>
+            <option value="">Todas</option>
             {marques.map((m) => (
               <option key={m} value={m}>
                 {m}
@@ -59,7 +59,7 @@ export default function ProductFilters({ marques, onFilterChange }: ProductFilte
 
         <div>
           <label htmlFor="filter-prix" className="block text-sm font-medium text-navy mb-1">
-            Prix max (EUR)
+            Preço máx. (EUR)
           </label>
           <input
             id="filter-prix"
@@ -73,7 +73,7 @@ export default function ProductFilters({ marques, onFilterChange }: ProductFilte
 
         <div className="flex gap-2">
           <Button size="sm" onClick={applyFilters} className="flex-1">
-            Appliquer
+            Aplicar
           </Button>
           <Button size="sm" variant="ghost" onClick={reset}>
             <X size={14} />

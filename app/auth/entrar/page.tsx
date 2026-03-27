@@ -26,12 +26,12 @@ export default function LoginPage() {
     });
 
     if (authError) {
-      setError('Email ou mot de passe incorrect.');
+      setError('Email ou palavra-passe incorreta.');
       setLoading(false);
       return;
     }
 
-    router.push('/dashboard');
+    router.push('/painel');
     router.refresh();
   };
 
@@ -39,8 +39,8 @@ export default function LoginPage() {
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 w-full max-w-md">
         <div className="text-center mb-6">
-          <h1 className="font-sora text-2xl font-bold text-navy">Connexion</h1>
-          <p className="text-sm text-gray-text mt-1">Accédez à votre espace client</p>
+          <h1 className="font-sora text-2xl font-bold text-navy">Iniciar sessão</h1>
+          <p className="text-sm text-gray-text mt-1">Aceda ao seu espaço cliente</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
@@ -56,7 +56,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-navy mb-1">Mot de passe</label>
+            <label htmlFor="password" className="block text-sm font-medium text-navy mb-1">Palavra-passe</label>
             <input
               id="password"
               type="password"
@@ -71,14 +71,14 @@ export default function LoginPage() {
 
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? <Loader2 size={16} className="animate-spin" /> : <LogIn size={16} />}
-            Se connecter
+            Entrar
           </Button>
         </form>
 
         <p className="text-sm text-gray-text text-center mt-4">
-          Pas encore de compte ?{' '}
-          <Link href="/auth/register" className="text-ocean font-medium hover:underline">
-            S&apos;inscrire
+          Ainda não tem conta?{' '}
+          <Link href="/auth/registar" className="text-ocean font-medium hover:underline">
+            Registar-se
           </Link>
         </p>
       </div>

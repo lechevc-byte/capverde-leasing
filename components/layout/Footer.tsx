@@ -2,17 +2,17 @@ import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const categories = [
-  { name: 'Véhicules', href: '/categorie/vehicules' },
-  { name: 'Informatique', href: '/categorie/informatique' },
-  { name: 'Téléphonie', href: '/categorie/telephonie' },
-  { name: 'Mobilier', href: '/categorie/mobilier' },
-  { name: 'Matériel CHR', href: '/categorie/chr' },
+  { name: 'Veículos', href: '/categoria/vehicules' },
+  { name: 'Informática', href: '/categoria/informatique' },
+  { name: 'Telefonia', href: '/categoria/telephonie' },
+  { name: 'Mobiliário', href: '/categoria/mobilier' },
+  { name: 'Equipamento CHR', href: '/categoria/chr' },
 ];
 
-const liens = [
-  { name: 'Simulateur de loyer', href: '/simulateur' },
-  { name: 'Faire une demande', href: '/demande' },
-  { name: 'Mon espace', href: '/dashboard' },
+const links = [
+  { name: 'Simulador de renda', href: '/simulador' },
+  { name: 'Fazer um pedido', href: '/pedido' },
+  { name: 'O meu espaço', href: '/painel' },
 ];
 
 export default function Footer() {
@@ -31,13 +31,13 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
-              La première marketplace de leasing opérationnel au Cap-Vert. Financez vos équipements professionnels simplement.
+              O primeiro marketplace de leasing operacional em Cabo Verde. Financie os seus equipamentos profissionais de forma simples.
             </p>
           </div>
 
-          {/* Catégories */}
+          {/* Categorias */}
           <div>
-            <h3 className="font-sora font-semibold mb-4">Catégories</h3>
+            <h3 className="font-sora font-semibold mb-4">Categorias</h3>
             <ul className="space-y-2">
               {categories.map((cat) => (
                 <li key={cat.href}>
@@ -49,11 +49,11 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Liens */}
+          {/* Links */}
           <div>
-            <h3 className="font-sora font-semibold mb-4">Liens utiles</h3>
+            <h3 className="font-sora font-semibold mb-4">Links úteis</h3>
             <ul className="space-y-2">
-              {liens.map((lien) => (
+              {links.map((lien) => (
                 <li key={lien.href}>
                   <Link href={lien.href} className="text-sm text-white/60 hover:text-gold transition-colors">
                     {lien.name}
@@ -63,13 +63,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contacto */}
           <div>
-            <h3 className="font-sora font-semibold mb-4">Contact</h3>
+            <h3 className="font-sora font-semibold mb-4">Contacto</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-white/60">
                 <MapPin size={16} className="text-gold shrink-0" />
-                Praia, Santiago, Cap-Vert
+                Praia, Santiago, Cabo Verde
               </li>
               <li>
                 <a href="mailto:contact@capverde-leasing.com" className="flex items-center gap-2 text-sm text-white/60 hover:text-gold transition-colors">
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/40">
-          &copy; {new Date().getFullYear()} CapVerde Leasing. Tous droits réservés.
+          &copy; {new Date().getFullYear()} CapVerde Leasing. Todos os direitos reservados.
         </div>
       </div>
     </footer>

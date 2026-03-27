@@ -16,32 +16,32 @@ export default function ConfirmationPage() {
       </div>
 
       <h1 className="font-sora text-3xl font-bold text-navy mb-4">
-        Demande envoyée !
+        Pedido enviado!
       </h1>
 
       <p className="text-gray-text mb-2">
-        Votre demande de leasing a été transmise avec succès.
+        O seu pedido de leasing foi transmitido com sucesso.
       </p>
       <p className="text-gray-text mb-8">
         {reference ? (
-          <>Votre numéro de référence est <strong className="text-navy">{reference}</strong>.</>
+          <>O seu número de referência é <strong className="text-navy">{reference}</strong>.</>
         ) : (
-          <>Vous recevrez un email de confirmation avec votre numéro de référence.</>
+          <>Receberá um email de confirmação com o seu número de referência.</>
         )}
-        {' '}Notre équipe étudiera votre dossier sous 5 jours ouvrés.
+        {' '}A nossa equipa analisará o seu processo em 5 dias úteis.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link href="/">
           <Button variant="outline">
             <Home size={16} />
-            Retour à l&apos;accueil
+            Voltar ao início
           </Button>
         </Link>
-        <Link href="/dashboard">
+        <Link href="/painel">
           <Button>
             <FileText size={16} />
-            Suivre mon dossier
+            Acompanhar o meu processo
           </Button>
         </Link>
       </div>

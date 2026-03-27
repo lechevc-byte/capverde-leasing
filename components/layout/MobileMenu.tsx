@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { X, Home, Grid3x3, Calculator, User, LogIn } from 'lucide-react';
+import { X, Home, Grid3x3, Calculator, Mail } from 'lucide-react';
 
 interface MobileMenuProps {
   open: boolean;
@@ -10,12 +10,13 @@ interface MobileMenuProps {
 }
 
 const links = [
-  { name: 'Accueil', href: '/', icon: Home },
-  { name: 'Catégories', href: '/categories', icon: Grid3x3 },
-  { name: 'Simulateur', href: '/simulateur', icon: Calculator },
+  { name: 'Início', href: '/', icon: Home },
+  { name: 'Categorias', href: '/categorias', icon: Grid3x3 },
+  { name: 'Simulador', href: '/simulador', icon: Calculator },
+  { name: 'Contacto', href: '/contacto', icon: Mail },
 ];
 
-export default function MobileMenu({ open, onClose, user }: MobileMenuProps) {
+export default function MobileMenu({ open, onClose }: MobileMenuProps) {
   if (!open) return null;
 
   return (
@@ -27,7 +28,7 @@ export default function MobileMenu({ open, onClose, user }: MobileMenuProps) {
           <button
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-white/10 transition-colors"
-            aria-label="Fermer le menu"
+            aria-label="Fechar menu"
           >
             <X size={20} className="text-white" />
           </button>
@@ -45,25 +46,14 @@ export default function MobileMenu({ open, onClose, user }: MobileMenuProps) {
             </Link>
           ))}
           <div className="border-t border-white/10 my-4" />
-          {user ? (
-            <Link
-              href="/dashboard"
-              onClick={onClose}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-            >
-              <User size={20} />
-              Mon espace
-            </Link>
-          ) : (
-            <Link
-              href="/auth/login"
-              onClick={onClose}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg text-gold hover:bg-white/10 transition-colors"
-            >
-              <LogIn size={20} />
-              Connexion
-            </Link>
-          )}
+          <Link
+            href="/contacto"
+            onClick={onClose}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gold hover:bg-white/10 transition-colors font-semibold"
+          >
+            <Mail size={20} />
+            Orçamento personalizado
+          </Link>
         </nav>
       </div>
     </div>

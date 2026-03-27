@@ -16,7 +16,7 @@ export default async function DossierPage({ params }: Props) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect('/auth/login');
+  if (!user) redirect('/auth/entrar');
 
   const { data } = await supabase
     .from('demandes')
@@ -31,7 +31,7 @@ export default async function DossierPage({ params }: Props) {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CategoryBreadcrumb
         items={[
-          { label: 'Mon espace', href: '/dashboard' },
+          { label: 'O meu espaço', href: '/painel' },
           { label: demande.reference },
         ]}
       />
@@ -49,20 +49,20 @@ export default async function DossierPage({ params }: Props) {
             <h2 className="font-sora font-semibold text-navy">Leasing</h2>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-text">Produit</span>
+                <span className="text-gray-text">Produto</span>
                 <p className="font-medium">{demande.produits?.nom || '-'}</p>
               </div>
               <div>
-                <span className="text-gray-text">Valeur du bien</span>
+                <span className="text-gray-text">Valor do bem</span>
                 <p className="font-medium">{formatEuro(demande.prix_bien)}</p>
               </div>
               <div>
-                <span className="text-gray-text">Durée</span>
-                <p className="font-medium">{demande.duree_mois} mois</p>
+                <span className="text-gray-text">Duração</span>
+                <p className="font-medium">{demande.duree_mois} meses</p>
               </div>
               <div>
-                <span className="text-gray-text">Loyer mensuel</span>
-                <p className="font-bold text-gold text-lg">{formatEuro(demande.loyer_mensuel_estime)}/mois</p>
+                <span className="text-gray-text">Renda mensal</span>
+                <p className="font-bold text-gold text-lg">{formatEuro(demande.loyer_mensuel_estime)}/mês</p>
               </div>
             </div>
           </CardContent>
@@ -70,10 +70,10 @@ export default async function DossierPage({ params }: Props) {
 
         <Card>
           <CardContent className="space-y-3">
-            <h2 className="font-sora font-semibold text-navy">Contact</h2>
+            <h2 className="font-sora font-semibold text-navy">Contacto</h2>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-text">Nom</span>
+                <span className="text-gray-text">Nome</span>
                 <p className="font-medium">{demande.client_prenom} {demande.client_nom}</p>
               </div>
               <div>
@@ -81,12 +81,12 @@ export default async function DossierPage({ params }: Props) {
                 <p className="font-medium">{demande.client_email}</p>
               </div>
               <div>
-                <span className="text-gray-text">Île</span>
+                <span className="text-gray-text">Ilha</span>
                 <p className="font-medium">{demande.client_ile || '-'}</p>
               </div>
               <div>
-                <span className="text-gray-text">Date</span>
-                <p className="font-medium">{new Date(demande.created_at).toLocaleDateString('fr-FR')}</p>
+                <span className="text-gray-text">Data</span>
+                <p className="font-medium">{new Date(demande.created_at).toLocaleDateString('pt-PT')}</p>
               </div>
             </div>
           </CardContent>

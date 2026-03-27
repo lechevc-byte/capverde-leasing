@@ -8,8 +8,8 @@ interface BreadcrumbItem {
 
 export default function CategoryBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav className="flex items-center gap-2 text-sm text-gray-text" aria-label="Fil d'Ariane">
-      <Link href="/" className="hover:text-ocean transition-colors" aria-label="Accueil">
+    <nav className="flex items-center gap-2 text-sm text-gray-text" aria-label="Navegação">
+      <Link href="/" className="hover:text-ocean transition-colors" aria-label="Início">
         <Home size={14} />
       </Link>
       {items.map((item, i) => (

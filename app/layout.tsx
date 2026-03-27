@@ -20,15 +20,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CapVerde Leasing — Marketplace de Leasing au Cap-Vert",
+  title: "CapVerde Leasing — Marketplace de Leasing em Cabo Verde",
   description:
-    "La première marketplace de leasing opérationnel au Cap-Vert. Véhicules, informatique, téléphonie, mobilier, matériel CHR.",
+    "O primeiro marketplace de leasing operacional em Cabo Verde. Veículos, informática, telefonia, mobiliário, equipamento CHR.",
   openGraph: {
-    title: "CapVerde Leasing — Marketplace de Leasing au Cap-Vert",
+    title: "CapVerde Leasing — Marketplace de Leasing em Cabo Verde",
     description:
-      "La première marketplace de leasing opérationnel au Cap-Vert. Véhicules, informatique, téléphonie, mobilier, matériel CHR.",
+      "O primeiro marketplace de leasing operacional em Cabo Verde. Veículos, informática, telefonia, mobiliário, equipamento CHR.",
     siteName: "CapVerde Leasing",
-    locale: "fr_FR",
+    locale: "pt_PT",
     type: "website",
   },
 };
@@ -52,7 +52,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="fr" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="pt" className={`${sora.variable} ${inter.variable}`}>
       <body>
         <Header user={profil} />
         <main className="min-h-screen">{children}</main>

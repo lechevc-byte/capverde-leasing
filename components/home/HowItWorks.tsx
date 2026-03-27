@@ -3,18 +3,18 @@ import { Search, FileText, PackageCheck } from 'lucide-react';
 const steps = [
   {
     icon: Search,
-    title: 'Je choisis mon équipement',
-    description: 'Je parcours les catégories et configure ma durée de leasing.',
+    title: 'Escolho o meu equipamento',
+    description: 'Percorro as categorias e configuro a duração do leasing.',
   },
   {
     icon: FileText,
-    title: 'Je soumets ma demande',
-    description: 'Je remplis le formulaire en 4 minutes, avec ou sans compte.',
+    title: 'Submeto o meu pedido',
+    description: 'Preencho o formulário em 4 minutos, com ou sem conta.',
   },
   {
     icon: PackageCheck,
-    title: 'Je reçois mon équipement',
-    description: 'La banque finance, le fournisseur livre. Tout est simplifié.',
+    title: 'Recebo o meu equipamento',
+    description: 'O banco financia, o fornecedor entrega. Tudo simplificado.',
   },
 ];
 
@@ -24,10 +24,10 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            Comment ça marche ?
+            Como funciona?
           </h2>
           <p className="mt-3 text-gray-text">
-            3 étapes simples pour financer vos équipements
+            3 passos simples para financiar os seus equipamentos
           </p>
         </div>
 

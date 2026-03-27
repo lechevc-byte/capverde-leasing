@@ -97,13 +97,13 @@ export const ILES_CAP_VERT = [
 export type IleCapVert = typeof ILES_CAP_VERT[number];
 
 export const STATUT_LABELS: Record<Demande['statut'], string> = {
-  nouvelle: 'Nouvelle',
-  en_etude: 'En étude',
-  approuvee: 'Approuvée',
-  refusee: 'Refusée',
-  en_cours: 'En cours',
-  terminee: 'Terminée',
-  annulee: 'Annulée',
+  nouvelle: 'Nova',
+  en_etude: 'Em análise',
+  approuvee: 'Aprovada',
+  refusee: 'Recusada',
+  en_cours: 'Em curso',
+  terminee: 'Concluída',
+  annulee: 'Cancelada',
 };
 
 export const STATUT_COLORS: Record<Demande['statut'], string> = {

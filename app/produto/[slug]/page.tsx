@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (data) {
       return {
         title: `${data.nom} — Leasing | CapVerde Leasing`,
-        description: data.description_courte || `Louez ${data.nom} en leasing opérationnel au Cap-Vert.`,
+        description: data.description_courte || `Alugue ${data.nom} em leasing operacional em Cabo Verde.`,
       };
     }
   } catch {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: 'Produit — CapVerde Leasing',
+    title: 'Produto — CapVerde Leasing',
   };
 }
 
@@ -60,18 +60,16 @@ export default async function ProduitPage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CategoryBreadcrumb
         items={[
-          { label: 'Catégories', href: '/categories' },
+          { label: 'Categorias', href: '/categorias' },
           ...(category
-            ? [{ label: category.nom, href: `/categorie/${category.slug}` }]
+            ? [{ label: category.nom, href: `/categoria/${category.slug}` }]
             : []),
           { label: produit.nom },
         ]}
       />
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-5 gap-8">
-        {/* Left — Product details (3 cols) */}
         <div className="lg:col-span-3 space-y-8">
-          {/* Image */}
           <div className="bg-gradient-to-br from-light to-gray-100 rounded-xl h-64 sm:h-96 flex items-center justify-center overflow-hidden relative">
             <ProductImage
               src={produit.images?.[0]}
@@ -81,7 +79,6 @@ export default async function ProduitPage({ params }: Props) {
             />
           </div>
 
-          {/* Info */}
           <div>
             <div className="flex items-center gap-3 mb-3">
               {category && <Badge>{category.nom}</Badge>}
@@ -91,17 +88,16 @@ export default async function ProduitPage({ params }: Props) {
               {produit.nom}
             </h1>
             {produit.modele && (
-              <p className="text-gray-text mt-1">Modèle : {produit.modele}</p>
+              <p className="text-gray-text mt-1">Modelo: {produit.modele}</p>
             )}
             <p className="text-sm text-gray-text mt-1">
-              Valeur du bien : {formatEuro(produit.prix_achat)}
+              Valor do bem: {formatEuro(produit.prix_achat)}
             </p>
           </div>
 
-          {/* Description */}
           {produit.description_courte && (
             <div>
-              <h2 className="font-sora text-lg font-semibold text-navy mb-3">Description</h2>
+              <h2 className="font-sora text-lg font-semibold text-navy mb-3">Descrição</h2>
               <p className="text-gray-text leading-relaxed">{produit.description_courte}</p>
             </div>
           )}
@@ -112,11 +108,10 @@ export default async function ProduitPage({ params }: Props) {
             </div>
           )}
 
-          {/* Specifications */}
           {produit.specifications && Object.keys(produit.specifications).length > 0 && (
             <div>
               <h2 className="font-sora text-lg font-semibold text-navy mb-3">
-                Spécifications techniques
+                Especificações técnicas
               </h2>
               <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
                 {Object.entries(produit.specifications).map(([key, value], i) => (
@@ -130,7 +125,7 @@ export default async function ProduitPage({ params }: Props) {
                       {key.replace(/_/g, ' ')}
                     </span>
                     <span className="font-medium text-navy">
-                      {typeof value === 'boolean' ? (value ? 'Oui' : 'Non') : String(value)}
+                      {typeof value === 'boolean' ? (value ? 'Sim' : 'Não') : String(value)}
                     </span>
                   </div>
                 ))}
@@ -139,7 +134,6 @@ export default async function ProduitPage({ params }: Props) {
           )}
         </div>
 
-        {/* Right — Configurator (2 cols, sticky) */}
         <div className="lg:col-span-2">
           <div className="lg:sticky lg:top-24">
             <LeasingConfigurator

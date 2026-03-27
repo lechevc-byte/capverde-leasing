@@ -5,32 +5,32 @@ import { Truck, Monitor, Smartphone, Armchair, UtensilsCrossed } from 'lucide-re
 const categories = [
   {
     slug: 'vehicules',
-    nom: 'Véhicules',
-    description: 'Voitures, pick-ups, minibus, utilitaires',
+    nom: 'Veículos',
+    description: 'Carros, pick-ups, minibus, utilitários',
     icon: Truck,
   },
   {
     slug: 'informatique',
-    nom: 'Informatique',
-    description: 'PC, serveurs, NAS, switches, Wi-Fi',
+    nom: 'Informática',
+    description: 'PC, servidores, NAS, switches, Wi-Fi',
     icon: Monitor,
   },
   {
     slug: 'telephonie',
-    nom: 'Téléphonie',
-    description: 'Smartphones, IPBX, tablettes, TPE',
+    nom: 'Telefonia',
+    description: 'Smartphones, IPBX, tablets, TPE',
     icon: Smartphone,
   },
   {
     slug: 'mobilier',
-    nom: 'Mobilier',
-    description: 'Bureau, hôtelier, restaurant, open-space',
+    nom: 'Mobiliário',
+    description: 'Escritório, hoteleiro, restaurante, open-space',
     icon: Armchair,
   },
   {
     slug: 'chr',
-    nom: 'Matériel CHR',
-    description: 'Fours pro, réfrigération, machines café',
+    nom: 'Equipamento CHR',
+    description: 'Fornos pro, refrigeração, máquinas café',
     icon: UtensilsCrossed,
   },
 ];
@@ -41,23 +41,23 @@ export default function CategoryGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            Nos catégories d&apos;équipements
+            As nossas categorias de equipamentos
           </h2>
           <p className="mt-3 text-gray-text max-w-xl mx-auto">
-            Trouvez l&apos;équipement professionnel adapté à votre activité
+            Encontre o equipamento profissional adaptado à sua atividade
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
           {categories.map((cat) => (
-            <Link key={cat.slug} href={`/categorie/${cat.slug}`}>
+            <Link key={cat.slug} href={`/categoria/${cat.slug}`}>
               <Card hover className="p-6 text-center h-full">
                 <div className="w-14 h-14 mx-auto mb-4 bg-ocean/10 rounded-xl flex items-center justify-center">
                   <cat.icon size={28} className="text-ocean" />
                 </div>
                 <h3 className="font-sora font-semibold text-navy mb-1">{cat.nom}</h3>
                 <p className="text-xs text-gray-text line-clamp-2">{cat.description}</p>
-                <p className="mt-3 text-xs font-medium text-ocean">Voir les produits &rarr;</p>
+                <p className="mt-3 text-xs font-medium text-ocean">Ver produtos &rarr;</p>
               </Card>
             </Link>
           ))}

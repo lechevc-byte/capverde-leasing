@@ -17,13 +17,13 @@ export default function FeaturedProducts({ produits }: FeaturedProductsProps) {
         <div className="flex items-end justify-between mb-10">
           <div>
             <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-              Produits en vedette
+              Produtos em destaque
             </h2>
-            <p className="mt-2 text-gray-text">Les équipements les plus demandés</p>
+            <p className="mt-2 text-gray-text">Os equipamentos mais procurados</p>
           </div>
-          <Link href="/categories" className="hidden sm:block">
+          <Link href="/categorias" className="hidden sm:block">
             <Button variant="outline" size="sm">
-              Tout voir
+              Ver tudo
               <ArrowRight size={16} />
             </Button>
           </Link>
@@ -36,9 +36,9 @@ export default function FeaturedProducts({ produits }: FeaturedProductsProps) {
         </div>
 
         <div className="mt-8 text-center sm:hidden">
-          <Link href="/categories">
+          <Link href="/categorias">
             <Button variant="outline">
-              Voir tous les équipements
+              Ver todos os equipamentos
               <ArrowRight size={16} />
             </Button>
           </Link>

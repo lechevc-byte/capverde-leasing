@@ -17,9 +17,8 @@ export default async function AdminPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) redirect('/auth/login');
+  if (!user) redirect('/auth/entrar');
 
-  // Check admin role
   const { data: profil } = await supabase
     .from('profils')
     .select('role')
@@ -27,7 +26,7 @@ export default async function AdminPage() {
     .single();
 
   if (!profil || profil.role !== 'admin') {
-    redirect('/dashboard');
+    redirect('/painel');
   }
 
   const { data } = await supabase
@@ -46,15 +45,15 @@ export default async function AdminPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="font-sora text-3xl font-bold text-navy mb-8">Administration</h1>
+      <h1 className="font-sora text-3xl font-bold text-navy mb-8">Administração</h1>
 
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         {[
           { label: 'Total', value: counts.total, color: 'bg-navy' },
-          { label: 'Nouvelles', value: counts.nouvelle, color: 'bg-ocean' },
-          { label: 'En étude', value: counts.en_etude, color: 'bg-gold' },
-          { label: 'Approuvées', value: counts.approuvee, color: 'bg-green' },
+          { label: 'Novos', value: counts.nouvelle, color: 'bg-ocean' },
+          { label: 'Em análise', value: counts.en_etude, color: 'bg-gold' },
+          { label: 'Aprovados', value: counts.approuvee, color: 'bg-green' },
         ].map((s) => (
           <Card key={s.label}>
             <CardContent className="text-center">
@@ -71,12 +70,12 @@ export default async function AdminPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
-                <th className="text-left px-4 py-3 font-medium text-gray-text">Référence</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-text">Client</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-text">Produit</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-text">Loyer</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-text">Statut</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-text">Date</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-text">Referência</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-text">Cliente</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-text">Produto</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-text">Renda</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-text">Estado</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-text">Data</th>
               </tr>
             </thead>
             <tbody>
@@ -100,7 +99,7 @@ export default async function AdminPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3 text-gray-text">
-                    {new Date(d.created_at).toLocaleDateString('fr-FR')}
+                    {new Date(d.created_at).toLocaleDateString('pt-PT')}
                   </td>
                 </tr>
               ))}

@@ -11,18 +11,18 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const categoryNames: Record<string, string> = {
-    vehicules: 'Véhicules',
-    informatique: 'Informatique',
-    telephonie: 'Téléphonie',
-    mobilier: 'Mobilier',
-    chr: 'Matériel CHR',
+    vehicules: 'Veículos',
+    informatique: 'Informática',
+    telephonie: 'Telefonia',
+    mobilier: 'Mobiliário',
+    chr: 'Equipamento CHR',
   };
 
   const nom = categoryNames[params.slug] || params.slug;
 
   return {
-    title: `${nom} en leasing — CapVerde Leasing`,
-    description: `Découvrez nos ${nom.toLowerCase()} disponibles en leasing opérationnel au Cap-Vert.`,
+    title: `${nom} em leasing — CapVerde Leasing`,
+    description: `Descubra os nossos ${nom.toLowerCase()} disponíveis em leasing operacional em Cabo Verde.`,
   };
 }
 
@@ -52,13 +52,12 @@ export default async function CategoriePage({ params }: Props) {
 
     if (prodData) produits = prodData as Produit[];
   } catch {
-    // Fallback for when Supabase is not configured
     const categoryNames: Record<string, string> = {
-      vehicules: 'Véhicules',
-      informatique: 'Informatique',
-      telephonie: 'Téléphonie',
-      mobilier: 'Mobilier',
-      chr: 'Matériel CHR',
+      vehicules: 'Veículos',
+      informatique: 'Informática',
+      telephonie: 'Telefonia',
+      mobilier: 'Mobiliário',
+      chr: 'Equipamento CHR',
     };
 
     if (!categoryNames[params.slug]) return notFound();
@@ -85,7 +84,7 @@ export default async function CategoriePage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CategoryBreadcrumb
         items={[
-          { label: 'Catégories', href: '/categories' },
+          { label: 'Categorias', href: '/categorias' },
           { label: category.nom },
         ]}
       />

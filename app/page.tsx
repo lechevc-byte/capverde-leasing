@@ -6,7 +6,7 @@ import BenefitsSection from '@/components/home/BenefitsSection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import TrustBanner from '@/components/home/TrustBanner';
 import Button from '@/components/ui/Button';
-import { Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import type { Produit } from '@/types';
 
 export default async function HomePage() {
@@ -34,19 +34,19 @@ export default async function HomePage() {
       <TrustBanner />
       <FeaturedProducts produits={featuredProducts} />
 
-      {/* CTA final */}
+      {/* CTA final — orçamento personalizado */}
       <section className="py-16 sm:py-20 bg-navy">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-4">
-            Vous êtes une banque ?
+            Tem uma necessidade específica?
           </h2>
           <p className="text-white/60 mb-8 text-lg">
-            Devenez partenaire de CapVerde Leasing et proposez vos solutions de financement à nos clients professionnels.
+            Podemos financiar tudo. Descreva o seu projeto e receba um orçamento personalizado em 48h.
           </p>
-          <a href="mailto:partenaires@capverde-leasing.com">
+          <a href="/contacto">
             <Button variant="gold" size="lg">
-              <Mail size={20} />
-              Devenir partenaire
+              <ArrowRight size={20} />
+              Pedir orçamento
             </Button>
           </a>
         </div>

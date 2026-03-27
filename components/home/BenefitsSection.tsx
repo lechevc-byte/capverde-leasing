@@ -3,28 +3,28 @@ import { Banknote, BarChart3, Receipt, BookOpen, RefreshCw } from 'lucide-react'
 const benefits = [
   {
     icon: Banknote,
-    title: 'Zéro apport initial',
-    description: 'Aucun investissement lourd. Conservez votre trésorerie pour votre activité.',
+    title: 'Zero entrada inicial',
+    description: 'Sem investimento pesado. Conserve a sua tesouraria para a sua atividade.',
   },
   {
     icon: BarChart3,
-    title: 'Loyers 100% déductibles',
-    description: 'Chaque loyer réduit votre résultat imposable. Optimisez votre fiscalité.',
+    title: 'Rendas 100% dedutíveis',
+    description: 'Cada renda reduz o seu resultado tributável. Otimize a sua fiscalidade.',
   },
   {
     icon: Receipt,
-    title: 'TVA récupérable',
-    description: 'La TVA sur les loyers est récupérable à chaque échéance mensuelle.',
+    title: 'IVA recuperável',
+    description: 'O IVA sobre as rendas é recuperável a cada vencimento mensal.',
   },
   {
     icon: BookOpen,
-    title: 'Hors bilan',
-    description: 'Le leasing n\'apparaît pas à l\'actif. Préservez votre capacité d\'emprunt.',
+    title: 'Fora do balanço',
+    description: 'O leasing não aparece no ativo. Preserve a sua capacidade de endividamento.',
   },
   {
     icon: RefreshCw,
-    title: 'Renouvellement facile',
-    description: 'En fin de contrat, renouvelez vos équipements avec la dernière technologie.',
+    title: 'Renovação fácil',
+    description: 'No final do contrato, renove os seus equipamentos com a última tecnologia.',
   },
 ];
 
@@ -34,10 +34,10 @@ export default function BenefitsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            Pourquoi le leasing ?
+            Porquê o leasing?
           </h2>
           <p className="mt-3 text-gray-text max-w-xl mx-auto">
-            5 avantages concrets pour votre entreprise
+            5 vantagens concretas para a sua empresa
           </p>
         </div>
 

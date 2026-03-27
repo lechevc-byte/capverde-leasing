@@ -12,13 +12,13 @@ import { ILES_CAP_VERT } from '@/types';
 import { ArrowLeft, ArrowRight, Check, Loader2, Edit3, Upload, X as XIcon, FileText } from 'lucide-react';
 
 const CLIENT_TYPES = [
-  { value: 'entreprise', label: 'Entreprise' },
-  { value: 'profession_liberale', label: 'Profession libérale' },
-  { value: 'administration', label: 'Administration' },
-  { value: 'particulier_pro', label: 'Particulier professionnel' },
+  { value: 'entreprise', label: 'Empresa' },
+  { value: 'profession_liberale', label: 'Profissão liberal' },
+  { value: 'administration', label: 'Administração' },
+  { value: 'particulier_pro', label: 'Particular profissional' },
 ];
 
-const STEPS = ['Récapitulatif', 'Informations', 'Documents', 'Confirmation'];
+const STEPS = ['Resumo', 'Informações', 'Documentos', 'Confirmação'];
 
 export default function DemandForm() {
   const router = useRouter();
@@ -94,7 +94,6 @@ export default function DemandForm() {
     try {
       const supabase = createClient();
 
-      // Upload documents if any
       const uploadedUrls: string[] = [];
       for (const [key, file] of Object.entries(documents)) {
         if (!file) continue;
@@ -129,10 +128,10 @@ export default function DemandForm() {
 
       if (error) throw error;
       const ref = data?.reference || '';
-      router.push(`/demande/confirmation${ref ? `?ref=${encodeURIComponent(ref)}` : ''}`);
+      router.push(`/pedido/confirmation${ref ? `?ref=${encodeURIComponent(ref)}` : ''}`);
     } catch (err) {
       console.error(err);
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      alert('Erro ao enviar. Por favor tente novamente.');
     } finally {
       setLoading(false);
     }
@@ -163,36 +162,36 @@ export default function DemandForm() {
       {/* Step 0 — Recap */}
       {step === 0 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Récapitulatif de votre leasing</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">Resumo do seu leasing</h2>
           {produit && result ? (
             <>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-text">Produit</span>
+                  <span className="text-gray-text">Produto</span>
                   <span className="font-semibold text-navy">{produit.nom}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-text">Valeur du bien</span>
+                  <span className="text-gray-text">Valor do bem</span>
                   <span className="font-semibold text-navy">{formatEuro(produit.prix_achat)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-text">Durée</span>
-                  <span className="font-semibold text-navy">{duree} mois</span>
+                  <span className="text-gray-text">Duração</span>
+                  <span className="font-semibold text-navy">{duree} meses</span>
                 </div>
                 <div className="flex justify-between text-lg border-t border-gray-100 pt-3">
-                  <span className="text-gray-text">Loyer mensuel</span>
-                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mois</span>
+                  <span className="text-gray-text">Renda mensal</span>
+                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mês</span>
                 </div>
               </div>
               <button
                 onClick={() => router.back()}
                 className="text-sm text-ocean hover:underline flex items-center gap-1"
               >
-                <Edit3 size={14} /> Modifier la configuration
+                <Edit3 size={14} /> Modificar a configuração
               </button>
             </>
           ) : (
-            <p className="text-gray-text">Chargement du produit...</p>
+            <p className="text-gray-text">A carregar o produto...</p>
           )}
         </div>
       )}
@@ -200,16 +199,16 @@ export default function DemandForm() {
       {/* Step 1 — Informations */}
       {step === 1 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Vos informations</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">As suas informações</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="prenom" className="block text-sm font-medium text-navy mb-1">Prénom *</label>
+              <label htmlFor="prenom" className="block text-sm font-medium text-navy mb-1">Nome próprio *</label>
               <input id="prenom" type="text" value={form.prenom} onChange={(e) => updateField('prenom', e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
             </div>
             <div>
-              <label htmlFor="nom" className="block text-sm font-medium text-navy mb-1">Nom *</label>
+              <label htmlFor="nom" className="block text-sm font-medium text-navy mb-1">Apelido *</label>
               <input id="nom" type="text" value={form.nom} onChange={(e) => updateField('nom', e.target.value)}
                 className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
             </div>
@@ -222,16 +221,16 @@ export default function DemandForm() {
           </div>
 
           <div>
-            <label htmlFor="telephone" className="block text-sm font-medium text-navy mb-1">Téléphone *</label>
+            <label htmlFor="telephone" className="block text-sm font-medium text-navy mb-1">Telefone *</label>
             <input id="telephone" type="tel" value={form.telephone} onChange={(e) => updateField('telephone', e.target.value)}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
           </div>
 
           <div>
-            <label htmlFor="type_client" className="block text-sm font-medium text-navy mb-1">Type de client *</label>
+            <label htmlFor="type_client" className="block text-sm font-medium text-navy mb-1">Tipo de cliente *</label>
             <select id="type_client" value={form.type_client} onChange={(e) => updateField('type_client', e.target.value)}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean">
-              <option value="">Sélectionner...</option>
+              <option value="">Selecionar...</option>
               {CLIENT_TYPES.map((t) => (
                 <option key={t.value} value={t.value}>{t.label}</option>
               ))}
@@ -241,17 +240,17 @@ export default function DemandForm() {
           {form.type_client === 'entreprise' && (
             <div className="space-y-4 border-t border-gray-100 pt-4">
               <div>
-                <label htmlFor="nom_entreprise" className="block text-sm font-medium text-navy mb-1">Nom de l&apos;entreprise</label>
+                <label htmlFor="nom_entreprise" className="block text-sm font-medium text-navy mb-1">Nome da empresa</label>
                 <input id="nom_entreprise" type="text" value={form.nom_entreprise} onChange={(e) => updateField('nom_entreprise', e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
               </div>
               <div>
-                <label htmlFor="siret" className="block text-sm font-medium text-navy mb-1">NIF (numéro fiscal)</label>
+                <label htmlFor="siret" className="block text-sm font-medium text-navy mb-1">NIF (número fiscal)</label>
                 <input id="siret" type="text" value={form.siret} onChange={(e) => updateField('siret', e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
               </div>
               <div>
-                <label htmlFor="secteur" className="block text-sm font-medium text-navy mb-1">Secteur d&apos;activité</label>
+                <label htmlFor="secteur" className="block text-sm font-medium text-navy mb-1">Setor de atividade</label>
                 <input id="secteur" type="text" value={form.secteur} onChange={(e) => updateField('secteur', e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
               </div>
@@ -259,10 +258,10 @@ export default function DemandForm() {
           )}
 
           <div>
-            <label htmlFor="ile" className="block text-sm font-medium text-navy mb-1">Île du Cap-Vert *</label>
+            <label htmlFor="ile" className="block text-sm font-medium text-navy mb-1">Ilha de Cabo Verde *</label>
             <select id="ile" value={form.ile} onChange={(e) => updateField('ile', e.target.value)}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean">
-              <option value="">Sélectionner...</option>
+              <option value="">Selecionar...</option>
               {ILES_CAP_VERT.map((ile) => (
                 <option key={ile} value={ile}>{ile}</option>
               ))}
@@ -274,16 +273,16 @@ export default function DemandForm() {
       {/* Step 2 — Documents */}
       {step === 2 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Documents</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">Documentos</h2>
           <p className="text-sm text-gray-text">
-            Documents facultatifs — accélèrent le traitement de votre dossier.
+            Documentos facultativos — aceleram o tratamento do seu processo.
           </p>
 
           <div className="space-y-4">
             {[
-              { key: 'identite', label: "Carte d'identité ou passeport" },
-              { key: 'bilan', label: 'Dernier bilan / déclaration fiscale' },
-              { key: 'releve', label: 'Relevé bancaire (3 derniers mois)' },
+              { key: 'identite', label: 'Cartão de identidade ou passaporte' },
+              { key: 'bilan', label: 'Último balanço / declaração fiscal' },
+              { key: 'releve', label: 'Extrato bancário (últimos 3 meses)' },
             ].map((doc) => (
               <div key={doc.key} className="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-ocean/50 transition-colors relative">
                 {documents[doc.key] ? (
@@ -302,7 +301,7 @@ export default function DemandForm() {
                   <label className="cursor-pointer block">
                     <Upload size={20} className="mx-auto mb-1 text-gray-400" />
                     <p className="text-sm font-medium text-navy mb-1">{doc.label}</p>
-                    <p className="text-xs text-gray-text">Cliquez pour sélectionner (PDF, JPG, PNG)</p>
+                    <p className="text-xs text-gray-text">Clique para selecionar (PDF, JPG, PNG)</p>
                     <input
                       type="file"
                       className="hidden"
@@ -315,18 +314,18 @@ export default function DemandForm() {
             ))}
           </div>
 
-          <Badge variant="info">Optionnel — vous pourrez fournir ces documents plus tard</Badge>
+          <Badge variant="info">Opcional — pode fornecer estes documentos mais tarde</Badge>
         </div>
       )}
 
       {/* Step 3 — Confirmation */}
       {step === 3 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Confirmer votre demande</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">Confirmar o seu pedido</h2>
 
           <div className="bg-light rounded-lg p-4 space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-text">Nom</span>
+              <span className="text-gray-text">Nome</span>
               <span className="font-medium">{form.prenom} {form.nom}</span>
             </div>
             <div className="flex justify-between">
@@ -334,26 +333,26 @@ export default function DemandForm() {
               <span className="font-medium">{form.email}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-text">Téléphone</span>
+              <span className="text-gray-text">Telefone</span>
               <span className="font-medium">{form.telephone}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-text">Île</span>
+              <span className="text-gray-text">Ilha</span>
               <span className="font-medium">{form.ile}</span>
             </div>
             {produit && result && (
               <>
                 <div className="border-t border-gray-200 pt-2 flex justify-between">
-                  <span className="text-gray-text">Produit</span>
+                  <span className="text-gray-text">Produto</span>
                   <span className="font-medium">{produit.nom}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-text">Loyer mensuel</span>
-                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mois</span>
+                  <span className="text-gray-text">Renda mensal</span>
+                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mês</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-text">Durée</span>
-                  <span className="font-medium">{duree} mois</span>
+                  <span className="text-gray-text">Duração</span>
+                  <span className="font-medium">{duree} meses</span>
                 </div>
               </>
             )}
@@ -367,7 +366,7 @@ export default function DemandForm() {
               className="mt-1 h-4 w-4 rounded border-gray-300 text-ocean focus:ring-ocean"
             />
             <span className="text-sm text-gray-text">
-              J&apos;accepte que mes données soient transmises à la banque partenaire pour l&apos;étude de mon dossier de leasing.
+              Aceito que os meus dados sejam transmitidos ao banco parceiro para a análise do meu processo de leasing.
             </span>
           </label>
         </div>
@@ -378,7 +377,7 @@ export default function DemandForm() {
         {step > 0 ? (
           <Button variant="ghost" onClick={() => setStep(step - 1)}>
             <ArrowLeft size={16} />
-            Retour
+            Voltar
           </Button>
         ) : (
           <div />
@@ -386,13 +385,13 @@ export default function DemandForm() {
 
         {step < 3 ? (
           <Button onClick={() => setStep(step + 1)} disabled={!canProceed()}>
-            Suivant
+            Seguinte
             <ArrowRight size={16} />
           </Button>
         ) : (
           <Button onClick={handleSubmit} disabled={!canProceed() || loading}>
             {loading ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />}
-            Envoyer ma demande
+            Enviar o meu pedido
           </Button>
         )}
       </div>

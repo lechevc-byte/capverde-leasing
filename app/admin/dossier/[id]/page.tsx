@@ -52,7 +52,7 @@ export default function AdminDossierPage() {
   };
 
   if (!demande) {
-    return <div className="max-w-3xl mx-auto px-4 py-12 text-gray-text">Chargement...</div>;
+    return <div className="max-w-3xl mx-auto px-4 py-12 text-gray-text">A carregar...</div>;
   }
 
   return (
@@ -72,14 +72,13 @@ export default function AdminDossierPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Info */}
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardContent className="space-y-3">
-              <h2 className="font-sora font-semibold text-navy">Client</h2>
+              <h2 className="font-sora font-semibold text-navy">Cliente</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-gray-text">Nom</span>
+                  <span className="text-gray-text">Nome</span>
                   <p className="font-medium">{demande.client_prenom} {demande.client_nom}</p>
                 </div>
                 <div>
@@ -87,19 +86,19 @@ export default function AdminDossierPage() {
                   <p className="font-medium">{demande.client_email}</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Téléphone</span>
+                  <span className="text-gray-text">Telefone</span>
                   <p className="font-medium">{demande.client_telephone || '-'}</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Type</span>
+                  <span className="text-gray-text">Tipo</span>
                   <p className="font-medium">{demande.client_type || '-'}</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Entreprise</span>
+                  <span className="text-gray-text">Empresa</span>
                   <p className="font-medium">{demande.client_nom_entreprise || '-'}</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Île</span>
+                  <span className="text-gray-text">Ilha</span>
                   <p className="font-medium">{demande.client_ile || '-'}</p>
                 </div>
               </div>
@@ -111,20 +110,20 @@ export default function AdminDossierPage() {
               <h2 className="font-sora font-semibold text-navy">Leasing</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-gray-text">Produit</span>
+                  <span className="text-gray-text">Produto</span>
                   <p className="font-medium">{demande.produits?.nom || '-'}</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Valeur du bien</span>
+                  <span className="text-gray-text">Valor do bem</span>
                   <p className="font-medium">{formatEuro(demande.prix_bien)}</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Durée</span>
-                  <p className="font-medium">{demande.duree_mois} mois</p>
+                  <span className="text-gray-text">Duração</span>
+                  <p className="font-medium">{demande.duree_mois} meses</p>
                 </div>
                 <div>
-                  <span className="text-gray-text">Loyer mensuel</span>
-                  <p className="font-bold text-gold text-lg">{formatEuro(demande.loyer_mensuel_estime)}/mois</p>
+                  <span className="text-gray-text">Renda mensal</span>
+                  <p className="font-bold text-gold text-lg">{formatEuro(demande.loyer_mensuel_estime)}/mês</p>
                 </div>
               </div>
             </CardContent>
@@ -133,12 +132,12 @@ export default function AdminDossierPage() {
           {demande.documents_urls && demande.documents_urls.length > 0 && (
             <Card>
               <CardContent>
-                <h2 className="font-sora font-semibold text-navy mb-3">Documents</h2>
+                <h2 className="font-sora font-semibold text-navy mb-3">Documentos</h2>
                 <ul className="space-y-2">
                   {demande.documents_urls.map((url, i) => (
                     <li key={i}>
                       <a href={url} target="_blank" rel="noopener noreferrer" className="text-ocean hover:underline text-sm">
-                        Document {i + 1}
+                        Documento {i + 1}
                       </a>
                     </li>
                   ))}
@@ -148,14 +147,13 @@ export default function AdminDossierPage() {
           )}
         </div>
 
-        {/* Actions sidebar */}
         <div className="space-y-6">
           <Card>
             <CardContent className="space-y-4">
-              <h2 className="font-sora font-semibold text-navy">Gestion</h2>
+              <h2 className="font-sora font-semibold text-navy">Gestão</h2>
 
               <div>
-                <label htmlFor="statut" className="block text-sm font-medium text-navy mb-1">Statut</label>
+                <label htmlFor="statut" className="block text-sm font-medium text-navy mb-1">Estado</label>
                 <select
                   id="statut"
                   value={statut}
@@ -169,20 +167,20 @@ export default function AdminDossierPage() {
               </div>
 
               <div>
-                <label htmlFor="notes" className="block text-sm font-medium text-navy mb-1">Notes admin</label>
+                <label htmlFor="notes" className="block text-sm font-medium text-navy mb-1">Notas admin</label>
                 <textarea
                   id="notes"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={5}
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean resize-none"
-                  placeholder="Notes internes..."
+                  placeholder="Notas internas..."
                 />
               </div>
 
               <Button onClick={handleSave} className="w-full" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
-                Enregistrer
+                Guardar
               </Button>
             </CardContent>
           </Card>

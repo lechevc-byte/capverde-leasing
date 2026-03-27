@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ produit }: ProductCardProps) {
   return (
-    <Link href={`/produit/${produit.slug}`}>
+    <Link href={`/produto/${produit.slug}`}>
       <Card hover>
         <div className="relative h-48 bg-gradient-to-br from-light to-gray-100 flex items-center justify-center overflow-hidden">
           <ProductImage
@@ -24,7 +24,7 @@ export default function ProductCard({ produit }: ProductCardProps) {
           </div>
           {produit.en_vedette && (
             <div className="absolute top-3 left-3">
-              <Badge variant="gold">En vedette</Badge>
+              <Badge variant="gold">Destaque</Badge>
             </div>
           )}
         </div>
@@ -37,7 +37,7 @@ export default function ProductCard({ produit }: ProductCardProps) {
           {produit.description_courte && (
             <p className="text-sm text-gray-text line-clamp-2">{produit.description_courte}</p>
           )}
-          <p className="text-xs text-gray-text">Valeur : {formatEuro(produit.prix_achat)}</p>
+          <p className="text-xs text-gray-text">Valor: {formatEuro(produit.prix_achat)}</p>
         </div>
       </Card>
     </Link>

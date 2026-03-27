@@ -3,9 +3,9 @@ import Button from '@/components/ui/Button';
 import { ArrowRight, Calculator } from 'lucide-react';
 
 const stats = [
-  { value: '18 M€', label: 'de marché' },
-  { value: '5', label: 'catégories' },
-  { value: '100%', label: 'déductible' },
+  { value: '18 M€', label: 'de mercado' },
+  { value: '5', label: 'categorias' },
+  { value: '100%', label: 'dedutível' },
 ];
 
 export default function Hero() {
@@ -16,24 +16,24 @@ export default function Hero() {
       <div className="relative z-10 w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-20">
         <div className="max-w-xl">
           <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Équipez votre entreprise.{' '}
-            <span className="text-gold">Payez chaque mois.</span>
+            Equipe a sua empresa.{' '}
+            <span className="text-gold">Pague todos os meses.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
-            La première marketplace de leasing au Cap-Vert. Véhicules, IT, CHR, mobilier, téléphonie.
+            O primeiro marketplace de leasing em Cabo Verde. Veículos, IT, CHR, mobiliário, telefonia.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Link href="/categories">
+            <Link href="/categorias">
               <Button size="lg" variant="gold">
-                Découvrir les équipements
+                Descobrir os equipamentos
                 <ArrowRight size={20} />
               </Button>
             </Link>
-            <Link href="/simulateur">
+            <Link href="/simulador">
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
                 <Calculator size={20} />
-                Simuler mon loyer
+                Simular a minha renda
               </Button>
             </Link>
           </div>
