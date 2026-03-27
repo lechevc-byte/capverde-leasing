@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button';
 import { ArrowRight, Calculator } from 'lucide-react';
 
 const stats = [
-  { value: '18 M€', label: 'de mercado' },
+  { value: '2 Mrd$', label: 'de mercado' },
   { value: '5', label: 'categorias' },
   { value: '100%', label: 'dedutível' },
 ];

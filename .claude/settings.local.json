@@ -43,7 +43,9 @@
       "Bash(mv app/demande app/pedido)",
       "Bash(mv app/produit app/produto)",
       "Bash(git -C /c/Users/DELL/capverde-leasing log --oneline)",
-      "Bash(find /c/Users/DELL/capverde-leasing -maxdepth 2 -name *.env* -o -name .env*)"
+      "Bash(find /c/Users/DELL/capverde-leasing -maxdepth 2 -name *.env* -o -name .env*)",
+      "Bash(SUPABASE_SERVICE_ROLE_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c3Z1Ym5vamVzdmRpZWlzYmZ0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDUzMDAxOCwiZXhwIjoyMDkwMTA2MDE4fQ.2Lxzm_HkVvv7JSH-PtTfzcmbYqC0dwSTjqOyu-VVmM4\" node supabase/run_update_pt.mjs)",
+      "Bash(SUPABASE_SERVICE_ROLE_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3c3Z1Ym5vamVzdmRpZWlzYmZ0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDUzMDAxOCwiZXhwIjoyMDkwMTA2MDE4fQ.2Lxzm_HkVvv7JSH-PtTfzcmbYqC0dwSTjqOyu-VVmM4\" node supabase/run_update_cve.mjs)"
     ]
   }
 }

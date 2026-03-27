@@ -13,7 +13,7 @@ import Link from 'next/link';
 const DUREES = [24, 36, 48, 60];
 
 export default function SimulateurPage() {
-  const [prix, setPrix] = useState<string>('20000');
+  const [prix, setPrix] = useState<string>('2000000');
   const [duree, setDuree] = useState(36);
 
   const prixNum = Number(prix) || 0;
@@ -41,7 +41,7 @@ export default function SimulateurPage() {
         {/* Prix input */}
         <div>
           <label htmlFor="prix" className="block text-sm font-medium text-navy mb-2">
-            Preço do bem (EUR)
+            Preço do bem (CVE)
           </label>
           <input
             id="prix"
@@ -50,7 +50,7 @@ export default function SimulateurPage() {
             onChange={(e) => setPrix(e.target.value)}
             min={0}
             step={1000}
-            placeholder="Ex: 20000"
+            placeholder="Ex: 2000000"
             className="w-full rounded-lg border border-gray-200 px-4 py-3 text-lg font-semibold focus:border-ocean focus:ring-1 focus:ring-ocean"
           />
         </div>

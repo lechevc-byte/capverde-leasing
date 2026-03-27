@@ -32,20 +32,20 @@ export function calculerLeasing(config: LeasingConfig): LeasingResult {
       ? montantFinance / dureeMois
       : (montantFinance * tauxMensuel) / (1 - Math.pow(1 + tauxMensuel, -dureeMois));
 
-  const loyerMensuelArrondi = Math.round(loyerMensuel * 100) / 100;
+  const loyerMensuelArrondi = Math.round(loyerMensuel);
   const loyerTotal = loyerMensuelArrondi * dureeMois;
-  const coutTotal = loyerTotal + valeurResiduelle;
+  const coutTotal = loyerTotal + Math.round(valeurResiduelle);
   const coutFinancement = coutTotal - prixBien;
   const economieImpot = loyerTotal * 0.28;
   const tauxEffectif = tauxAnnuel;
 
   return {
     loyerMensuel: loyerMensuelArrondi,
-    loyerTotal: Math.round(loyerTotal * 100) / 100,
-    valeurResiduelle: Math.round(valeurResiduelle * 100) / 100,
-    coutTotal: Math.round(coutTotal * 100) / 100,
-    coutFinancement: Math.round(coutFinancement * 100) / 100,
-    economieImpot: Math.round(economieImpot * 100) / 100,
+    loyerTotal: Math.round(loyerTotal),
+    valeurResiduelle: Math.round(valeurResiduelle),
+    coutTotal: Math.round(coutTotal),
+    coutFinancement: Math.round(coutFinancement),
+    economieImpot: Math.round(economieImpot),
     tauxEffectif,
   };
 }

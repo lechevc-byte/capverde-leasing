@@ -1,16 +1,16 @@
 export function formatEuro(amount: number): string {
-  return new Intl.NumberFormat('fr-FR', {
+  return new Intl.NumberFormat('pt-CV', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'CVE',
     minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 0,
   }).format(amount);
 }
 
 export function formatEuroCompact(amount: number): string {
-  return new Intl.NumberFormat('fr-FR', {
+  return new Intl.NumberFormat('pt-CV', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'CVE',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);

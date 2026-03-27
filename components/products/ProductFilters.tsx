@@ -59,14 +59,14 @@ export default function ProductFilters({ marques, onFilterChange }: ProductFilte
 
         <div>
           <label htmlFor="filter-prix" className="block text-sm font-medium text-navy mb-1">
-            Preço máx. (EUR)
+            Preço máx. (CVE)
           </label>
           <input
             id="filter-prix"
             type="number"
             value={prixMax}
             onChange={(e) => setPrixMax(e.target.value)}
-            placeholder="Ex: 30000"
+            placeholder="Ex: 3000000"
             className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean"
           />
         </div>
