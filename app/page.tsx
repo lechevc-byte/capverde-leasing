@@ -28,9 +28,9 @@ export default async function HomePage() {
     <>
       <Hero />
       <CategoryGrid />
-      <BenefitsSection />
-      <TrustBanner />
       <FeaturedProducts produits={featuredProducts} />
+      <TrustBanner />
+      <BenefitsSection />
 
       {/* CTA final — orçamento personalizado */}
       <section className="py-16 sm:py-20 bg-navy">
