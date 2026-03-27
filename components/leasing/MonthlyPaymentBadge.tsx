@@ -16,11 +16,10 @@ export default function MonthlyPaymentBadge({
 
   return (
     <div
-      className={`inline-flex items-center gap-1 bg-gold text-white px-3 py-1.5 rounded-full text-sm font-semibold ${className}`}
+      className={`inline-flex flex-col items-center bg-gold text-white px-3 py-1.5 rounded-full text-xs font-semibold leading-tight ${className}`}
     >
-      <span>A partir de</span>
-      <span className="text-base font-bold">{formatEuroCompact(loyer)}</span>
-      <span>/mês</span>
+      <span>{formatEuroCompact(loyer)}/mês</span>
+      <span className="text-[10px] font-normal opacity-80">60 meses</span>
     </div>
   );
 }
