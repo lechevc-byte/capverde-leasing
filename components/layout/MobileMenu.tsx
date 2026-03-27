@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { X, Home, Grid3x3, Calculator, Mail } from 'lucide-react';
+import { X, Home, Grid3x3, Mail } from 'lucide-react';
 
 interface MobileMenuProps {
   open: boolean;
