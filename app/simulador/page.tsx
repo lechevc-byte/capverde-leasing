@@ -33,7 +33,10 @@ export default function SimulateurPage() {
       <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy mt-6 mb-2">
         Simulador de renda
       </h1>
-      <p className="text-gray-text mb-8">
+      <p className="text-gray-text mb-2">
+        Para empresas, hotéis, profissões liberais e administrações.
+      </p>
+      <p className="text-sm text-gray-text mb-8">
         Calcule a sua renda mensal em poucos segundos.
       </p>
 
@@ -113,9 +116,13 @@ export default function SimulateurPage() {
               <Badge variant="info">Rendas 100% dedutíveis fiscalmente</Badge>
             </div>
 
+            <p className="text-xs text-center text-gray-text">
+              Simulação indicativa. Taxa definitiva fixada pelo banco parceiro.
+            </p>
+
             <Link href={`/pedido?duree=${duree}`} className="block">
               <Button className="w-full" size="lg">
-                Quero este financiamento
+                Pedir estudo de dossier
                 <ArrowRight size={18} />
               </Button>
             </Link>

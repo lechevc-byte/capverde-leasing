@@ -7,7 +7,8 @@ import Button from '@/components/ui/Button';
 import MobileMenu from './MobileMenu';
 
 const navigation = [
-  { name: 'Categorias', href: '/categorias' },
+  { name: 'Como funciona', href: '/#como-funciona' },
+  { name: 'Soluções', href: '/categorias' },
   { name: 'Contacto', href: '/contacto' },
 ];
 
@@ -22,14 +23,17 @@ export default function Header({ user }: HeaderProps) {
     <header className="sticky top-0 z-40 bg-navy text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo + B2B badge */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gold rounded-lg flex items-center justify-center">
               <span className="font-sora font-bold text-navy text-sm">CV</span>
             </div>
-            <span className="font-sora font-bold text-lg hidden sm:block">
-              CapVerde <span className="text-gold">Leasing</span>
-            </span>
+            <div className="hidden sm:flex flex-col leading-tight">
+              <span className="font-sora font-bold text-lg">
+                CapVerde <span className="text-gold">Leasing</span>
+              </span>
+              <span className="text-[10px] text-white/50 uppercase tracking-wider">B2B &middot; B2G</span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
@@ -53,9 +57,9 @@ export default function Header({ user }: HeaderProps) {
                 Simular
               </Button>
             </Link>
-            <Link href="/contacto">
+            <Link href="/pedido">
               <Button variant="primary" size="sm">
-                Orçamento personalizado
+                Pedir financiamento
               </Button>
             </Link>
           </div>

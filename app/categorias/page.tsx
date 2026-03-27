@@ -2,13 +2,14 @@ import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import Card from '@/components/ui/Card';
 import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
+import Badge from '@/components/ui/Badge';
 import { Truck, Monitor, Smartphone, Armchair, UtensilsCrossed, type LucideIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Category } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'Categorias — CapVerde Leasing',
-  description: 'Explore as nossas 5 categorias de equipamentos profissionais disponíveis em leasing em Cabo Verde.',
+  title: 'Soluções de financiamento — CapVerde Leasing',
+  description: 'Financiamos todo o tipo de equipamento profissional em Cabo Verde. Descubra as nossas soluções.',
 };
 
 const iconMap: Record<string, LucideIcon> = {
@@ -46,11 +47,17 @@ export default async function CategoriesPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <CategoryBreadcrumb items={[{ label: 'Categorias' }]} />
+      <CategoryBreadcrumb items={[{ label: 'Soluções' }]} />
 
-      <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy mt-6 mb-8">
-        Todas as categorias
+      <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy mt-6 mb-3">
+        Soluções de financiamento
       </h1>
+      <p className="text-gray-text text-lg mb-2 max-w-2xl">
+        Financiamos qualquer equipamento profissional. Os produtos abaixo são exemplos — contacte-nos para um orçamento à medida.
+      </p>
+      <div className="mb-8">
+        <Badge variant="info">B2B &middot; B2G &middot; Profissões liberais</Badge>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((cat) => {
@@ -64,7 +71,7 @@ export default async function CategoriesPage() {
                 <h2 className="font-sora text-xl font-bold text-navy mb-2">{cat.nom}</h2>
                 <p className="text-sm text-gray-text mb-4">{cat.description}</p>
                 <span className="text-sm font-medium text-ocean">
-                  Ver produtos &rarr;
+                  Ver exemplos &rarr;
                 </span>
               </Card>
             </Link>

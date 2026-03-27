@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { X, Home, Grid3x3, Mail } from 'lucide-react';
+import { X, Home, Grid3x3, Mail, FileText } from 'lucide-react';
 
 interface MobileMenuProps {
   open: boolean;
@@ -11,7 +11,7 @@ interface MobileMenuProps {
 
 const links = [
   { name: 'Início', href: '/', icon: Home },
-  { name: 'Categorias', href: '/categorias', icon: Grid3x3 },
+  { name: 'Soluções', href: '/categorias', icon: Grid3x3 },
   { name: 'Contacto', href: '/contacto', icon: Mail },
 ];
 
@@ -46,12 +46,12 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
           ))}
           <div className="border-t border-white/10 my-4" />
           <Link
-            href="/contacto"
+            href="/pedido"
             onClick={onClose}
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-gold hover:bg-white/10 transition-colors font-semibold"
           >
-            <Mail size={20} />
-            Orçamento personalizado
+            <FileText size={20} />
+            Pedir financiamento
           </Link>
         </nav>
       </div>

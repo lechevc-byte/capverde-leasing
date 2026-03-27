@@ -1,7 +1,10 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
 import ProductGrid from '@/components/products/ProductGrid';
+import Button from '@/components/ui/Button';
+import { ArrowRight, Info } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Category, Produit } from '@/types';
 
@@ -21,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nom = categoryNames[params.slug] || params.slug;
 
   return {
-    title: `${nom} em leasing — CapVerde Leasing`,
-    description: `Descubra os nossos ${nom.toLowerCase()} disponíveis em leasing operacional em Cabo Verde.`,
+    title: `${nom} — Financiamento | CapVerde Leasing`,
+    description: `Exemplos de ${nom.toLowerCase()} que financiamos em leasing operacional em Cabo Verde.`,
   };
 }
 
@@ -84,12 +87,12 @@ export default async function CategoriePage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CategoryBreadcrumb
         items={[
-          { label: 'Categorias', href: '/categorias' },
+          { label: 'Soluções', href: '/categorias' },
           { label: category.nom },
         ]}
       />
 
-      <div className="mt-6 mb-8">
+      <div className="mt-6 mb-6">
         <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
           {category.nom}
         </h1>
@@ -98,7 +101,38 @@ export default async function CategoriePage({ params }: Props) {
         )}
       </div>
 
+      {/* Bandeau indicatif */}
+      <div className="bg-ocean/5 border border-ocean/20 rounded-xl p-4 mb-8 flex items-start gap-3">
+        <Info size={20} className="text-ocean shrink-0 mt-0.5" />
+        <p className="text-sm text-navy">
+          Estes equipamentos são apresentados a título indicativo. Financiamos todo o tipo de material profissional sob orçamento.
+        </p>
+      </div>
+
       <ProductGrid produits={produits} />
+
+      {/* CTA bottom */}
+      <div className="mt-12 bg-navy rounded-2xl p-8 sm:p-10 text-center">
+        <h2 className="font-sora text-xl sm:text-2xl font-bold text-white mb-3">
+          Não encontra o que procura?
+        </h2>
+        <p className="text-white/60 mb-6 max-w-md mx-auto">
+          Descreva a sua necessidade — estudamos qualquer pedido de financiamento.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link href="/pedido">
+            <Button variant="gold" size="lg">
+              Pedir financiamento
+              <ArrowRight size={18} />
+            </Button>
+          </Link>
+          <Link href="/contacto">
+            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 hover:text-white">
+              Contactar-nos
+            </Button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -91,8 +91,11 @@ export default async function ProduitPage({ params }: Props) {
               <p className="text-gray-text mt-1">Modelo: {produit.modele}</p>
             )}
             <p className="text-sm text-gray-text mt-1">
-              Valor do bem: {formatEuro(produit.prix_achat)}
+              Valor indicativo: {formatEuro(produit.prix_achat)}
             </p>
+            <div className="mt-3">
+              <Badge variant="info">B2B &middot; B2G &middot; Profissões liberais</Badge>
+            </div>
           </div>
 
           {produit.description_courte && (

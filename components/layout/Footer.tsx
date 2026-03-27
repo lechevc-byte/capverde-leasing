@@ -11,7 +11,7 @@ const categories = [
 
 const links = [
   { name: 'Simulador de renda', href: '/simulador' },
-  { name: 'Fazer um pedido', href: '/pedido' },
+  { name: 'Pedir financiamento', href: '/pedido' },
   { name: 'O meu espaço', href: '/painel' },
 ];
 

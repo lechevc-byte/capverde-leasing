@@ -41,10 +41,10 @@ export default function CategoryGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            As nossas categorias de equipamentos
+            O que financiamos
           </h2>
           <p className="mt-3 text-gray-text max-w-xl mx-auto">
-            Encontre o equipamento profissional adaptado à sua atividade
+            Qualquer equipamento profissional — os exemplos abaixo são indicativos
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function CategoryGrid() {
                 </div>
                 <h3 className="font-sora font-semibold text-navy mb-1">{cat.nom}</h3>
                 <p className="text-xs text-gray-text line-clamp-2">{cat.description}</p>
-                <p className="mt-3 text-xs font-medium text-ocean">Ver produtos &rarr;</p>
+                <p className="mt-3 text-xs font-medium text-ocean">Descobrir soluções &rarr;</p>
               </Card>
             </Link>
           ))}

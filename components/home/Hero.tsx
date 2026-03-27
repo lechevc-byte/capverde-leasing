@@ -3,8 +3,8 @@ import Button from '@/components/ui/Button';
 import { ArrowRight, Calculator } from 'lucide-react';
 
 const stats = [
-  { value: '2 Mrd$', label: 'de mercado' },
-  { value: '5', label: 'categorias' },
+  { value: '24–60', label: 'meses' },
+  { value: '0', label: 'entrada' },
   { value: '100%', label: 'dedutível' },
 ];
 
@@ -15,18 +15,22 @@ export default function Hero() {
       {/* LEFT : text */}
       <div className="relative z-10 w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-10 lg:px-16 py-20">
         <div className="max-w-xl">
+          <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-xs font-semibold text-gold uppercase tracking-wider">B2B &middot; B2G &middot; Profissões liberais</span>
+          </div>
+
           <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Equipe a sua empresa.{' '}
-            <span className="text-gold">Pague todos os meses.</span>
+            Financiamos os seus equipamentos.{' '}
+            <span className="text-gold">Sem entrada.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
-            O primeiro marketplace de leasing em Cabo Verde. Veículos, IT, CHR, mobiliário, telefonia.
+            Leasing operacional para empresas, hotéis e administrações em Cabo Verde. Veículos, IT, CHR, mobiliário — tudo sob medida.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Link href="/categorias">
+            <Link href="/pedido">
               <Button size="lg" variant="gold">
-                Descobrir os equipamentos
+                Pedir financiamento
                 <ArrowRight size={20} />
               </Button>
             </Link>

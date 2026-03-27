@@ -8,17 +8,26 @@ import { formatEuro } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
-import { ILES_CAP_VERT } from '@/types';
-import { ArrowLeft, ArrowRight, Check, Loader2, Edit3, Upload, X as XIcon, FileText } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Loader2, Upload, X as XIcon, FileText } from 'lucide-react';
 
 const CLIENT_TYPES = [
   { value: 'entreprise', label: 'Empresa' },
+  { value: 'hotel_resort', label: 'Hotel ou Resort' },
   { value: 'profession_liberale', label: 'Profissão liberal' },
   { value: 'administration', label: 'Administração' },
-  { value: 'particulier_pro', label: 'Particular profissional' },
+  { value: 'ong', label: 'ONG' },
 ];
 
-const STEPS = ['Resumo', 'Informações', 'Documentos', 'Confirmação'];
+const BUDGET_RANGES = [
+  { value: '<500k', label: '< 500 000 CVE' },
+  { value: '500k-2M', label: '500 000 – 2 000 000 CVE' },
+  { value: '2M-10M', label: '2 000 000 – 10 000 000 CVE' },
+  { value: '>10M', label: '> 10 000 000 CVE' },
+];
+
+const ILES = ['Santiago', 'Sal', 'Boavista', 'São Vicente', 'Fogo', 'Outras'];
+
+const STEPS = ['Projeto', 'Informações', 'Documentos', 'Confirmação'];
 
 export default function DemandForm() {
   const router = useRouter();
@@ -40,6 +49,9 @@ export default function DemandForm() {
     siret: '',
     secteur: '',
     ile: '',
+    equipement: '',
+    budget: '',
+    message: '',
     accepte: false,
   });
   const [documents, setDocuments] = useState<{ [key: string]: File | null }>({
@@ -74,6 +86,10 @@ export default function DemandForm() {
   };
 
   const canProceed = () => {
+    if (step === 0) {
+      // If coming from a product, auto-OK. Otherwise need equipment description
+      return produitId || (form.equipement && form.budget);
+    }
     if (step === 1) {
       return form.prenom && form.nom && form.email && form.telephone && form.type_client && form.ile;
     }
@@ -88,7 +104,6 @@ export default function DemandForm() {
   };
 
   const handleSubmit = async () => {
-    if (!produit || !result) return;
     setLoading(true);
 
     try {
@@ -108,12 +123,12 @@ export default function DemandForm() {
         }
       }
 
-      const { data, error } = await supabase.from('demandes').insert({
+      const insertData: Record<string, unknown> = {
         produit_id: produitId || null,
-        prix_bien: produit.prix_achat,
+        prix_bien: produit?.prix_achat || 0,
         duree_mois: duree,
-        loyer_mensuel_estime: result.loyerMensuel,
-        valeur_residuelle: result.valeurResiduelle,
+        loyer_mensuel_estime: result?.loyerMensuel || 0,
+        valeur_residuelle: result?.valeurResiduelle || 0,
         client_prenom: form.prenom,
         client_nom: form.nom,
         client_email: form.email,
@@ -123,8 +138,15 @@ export default function DemandForm() {
         client_siret: form.siret || null,
         client_secteur: form.secteur || null,
         client_ile: form.ile,
+        fournisseur_souhaite: form.equipement || null,
+        notes_admin: [
+          form.budget ? `Budget: ${form.budget}` : '',
+          form.message ? `Message: ${form.message}` : '',
+        ].filter(Boolean).join(' | ') || null,
         documents_urls: uploadedUrls.length > 0 ? uploadedUrls : null,
-      }).select('reference').single();
+      };
+
+      const { data, error } = await supabase.from('demandes').insert(insertData).select('reference').single();
 
       if (error) throw error;
       const ref = data?.reference || '';
@@ -159,39 +181,70 @@ export default function DemandForm() {
         ))}
       </div>
 
-      {/* Step 0 — Recap */}
+      {/* Step 0 — Projeto */}
       {step === 0 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Resumo do seu leasing</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">O seu projeto</h2>
+
           {produit && result ? (
-            <>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-gray-text">Produto</span>
-                  <span className="font-semibold text-navy">{produit.nom}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-text">Valor do bem</span>
-                  <span className="font-semibold text-navy">{formatEuro(produit.prix_achat)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-text">Duração</span>
-                  <span className="font-semibold text-navy">{duree} meses</span>
-                </div>
-                <div className="flex justify-between text-lg border-t border-gray-100 pt-3">
-                  <span className="text-gray-text">Renda mensal</span>
-                  <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mês</span>
-                </div>
+            <div className="bg-light rounded-lg p-4 space-y-3">
+              <p className="text-sm font-medium text-navy">Equipamento selecionado:</p>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-text">Equipamento</span>
+                <span className="font-semibold text-navy">{produit.nom}</span>
               </div>
-              <button
-                onClick={() => router.back()}
-                className="text-sm text-ocean hover:underline flex items-center gap-1"
-              >
-                <Edit3 size={14} /> Modificar a configuração
-              </button>
-            </>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-text">Valor indicativo</span>
+                <span className="font-semibold text-navy">{formatEuro(produit.prix_achat)}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-text">Duração</span>
+                <span className="font-semibold text-navy">{duree} meses</span>
+              </div>
+              <div className="flex justify-between text-sm border-t border-gray-200 pt-3">
+                <span className="text-gray-text">Renda mensal estimada</span>
+                <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mês</span>
+              </div>
+            </div>
           ) : (
-            <p className="text-gray-text">A carregar o produto...</p>
+            <>
+              <div>
+                <label htmlFor="equipement" className="block text-sm font-medium text-navy mb-1">Equipamento pretendido *</label>
+                <textarea
+                  id="equipement"
+                  value={form.equipement}
+                  onChange={(e) => updateField('equipement', e.target.value)}
+                  rows={3}
+                  placeholder="Descreva o equipamento que pretende financiar (tipo, marca, quantidade...)"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean resize-none"
+                />
+              </div>
+              <div>
+                <label htmlFor="budget" className="block text-sm font-medium text-navy mb-1">Valor estimado *</label>
+                <select
+                  id="budget"
+                  value={form.budget}
+                  onChange={(e) => updateField('budget', e.target.value)}
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean"
+                >
+                  <option value="">Selecionar...</option>
+                  {BUDGET_RANGES.map((b) => (
+                    <option key={b.value} value={b.value}>{b.label}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-navy mb-1">Observações (opcional)</label>
+                <textarea
+                  id="message"
+                  value={form.message}
+                  onChange={(e) => updateField('message', e.target.value)}
+                  rows={2}
+                  placeholder="Prazo desejado, fornecedor preferido, etc."
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean resize-none"
+                />
+              </div>
+            </>
           )}
         </div>
       )}
@@ -237,10 +290,10 @@ export default function DemandForm() {
             </select>
           </div>
 
-          {form.type_client === 'entreprise' && (
+          {(form.type_client === 'entreprise' || form.type_client === 'hotel_resort') && (
             <div className="space-y-4 border-t border-gray-100 pt-4">
               <div>
-                <label htmlFor="nom_entreprise" className="block text-sm font-medium text-navy mb-1">Nome da empresa</label>
+                <label htmlFor="nom_entreprise" className="block text-sm font-medium text-navy mb-1">Nome da empresa / hotel</label>
                 <input id="nom_entreprise" type="text" value={form.nom_entreprise} onChange={(e) => updateField('nom_entreprise', e.target.value)}
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean" />
               </div>
@@ -258,11 +311,11 @@ export default function DemandForm() {
           )}
 
           <div>
-            <label htmlFor="ile" className="block text-sm font-medium text-navy mb-1">Ilha de Cabo Verde *</label>
+            <label htmlFor="ile" className="block text-sm font-medium text-navy mb-1">Ilha *</label>
             <select id="ile" value={form.ile} onChange={(e) => updateField('ile', e.target.value)}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean">
               <option value="">Selecionar...</option>
-              {ILES_CAP_VERT.map((ile) => (
+              {ILES.map((ile) => (
                 <option key={ile} value={ile}>{ile}</option>
               ))}
             </select>
@@ -275,7 +328,7 @@ export default function DemandForm() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
           <h2 className="font-sora text-xl font-bold text-navy">Documentos</h2>
           <p className="text-sm text-gray-text">
-            Documentos facultativos — aceleram o tratamento do seu processo.
+            Documentos facultativos — aceleram o estudo do seu dossier.
           </p>
 
           <div className="space-y-4">
@@ -321,7 +374,7 @@ export default function DemandForm() {
       {/* Step 3 — Confirmation */}
       {step === 3 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Confirmar o seu pedido</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">Confirmar o seu pedido de estudo</h2>
 
           <div className="bg-light rounded-lg p-4 space-y-2 text-sm">
             <div className="flex justify-between">
@@ -343,17 +396,27 @@ export default function DemandForm() {
             {produit && result && (
               <>
                 <div className="border-t border-gray-200 pt-2 flex justify-between">
-                  <span className="text-gray-text">Produto</span>
+                  <span className="text-gray-text">Equipamento</span>
                   <span className="font-medium">{produit.nom}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-text">Renda mensal</span>
+                  <span className="text-gray-text">Renda mensal estimada</span>
                   <span className="font-bold text-gold">{formatEuro(result.loyerMensuel)}/mês</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-text">Duração</span>
-                  <span className="font-medium">{duree} meses</span>
+              </>
+            )}
+            {!produit && form.equipement && (
+              <>
+                <div className="border-t border-gray-200 pt-2 flex justify-between">
+                  <span className="text-gray-text">Equipamento</span>
+                  <span className="font-medium text-right max-w-[60%]">{form.equipement}</span>
                 </div>
+                {form.budget && (
+                  <div className="flex justify-between">
+                    <span className="text-gray-text">Valor estimado</span>
+                    <span className="font-medium">{BUDGET_RANGES.find(b => b.value === form.budget)?.label}</span>
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -366,7 +429,7 @@ export default function DemandForm() {
               className="mt-1 h-4 w-4 rounded border-gray-300 text-ocean focus:ring-ocean"
             />
             <span className="text-sm text-gray-text">
-              Aceito que os meus dados sejam transmitidos ao banco parceiro para a análise do meu processo de leasing.
+              Aceito que os meus dados sejam transmitidos ao banco parceiro para o estudo do meu pedido de financiamento.
             </span>
           </label>
         </div>
@@ -391,7 +454,7 @@ export default function DemandForm() {
         ) : (
           <Button onClick={handleSubmit} disabled={!canProceed() || loading}>
             {loading ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />}
-            Enviar o meu pedido
+            Enviar pedido de estudo
           </Button>
         )}
       </div>

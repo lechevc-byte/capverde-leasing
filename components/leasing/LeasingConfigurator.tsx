@@ -6,7 +6,7 @@ import { formatEuro } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
-import { ArrowRight, Bookmark, Shield } from 'lucide-react';
+import { ArrowRight, Clock, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 interface LeasingConfiguratorProps {
@@ -108,14 +108,14 @@ export default function LeasingConfigurator({
       <div className="space-y-3">
         <Link href={`/pedido?produit=${produitId}&duree=${duree}`} className="block">
           <Button className="w-full" size="lg">
-            Fazer o meu pedido
+            Pedir estudo de financiamento
             <ArrowRight size={18} />
           </Button>
         </Link>
-        <Button variant="outline" className="w-full" size="sm">
-          <Bookmark size={16} />
-          Guardar a simulação
-        </Button>
+        <p className="text-xs text-center text-gray-text flex items-center justify-center gap-1">
+          <Clock size={12} />
+          Dossier estudado em 5 dias úteis
+        </p>
       </div>
     </div>
   );
