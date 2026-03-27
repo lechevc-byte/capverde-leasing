@@ -1,19 +1,17 @@
 export function formatEuro(amount: number): string {
-  return new Intl.NumberFormat('pt-CV', {
-    style: 'currency',
-    currency: 'CVE',
+  const num = new Intl.NumberFormat('pt-PT', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
+  return `${num} CVE`;
 }
 
 export function formatEuroCompact(amount: number): string {
-  return new Intl.NumberFormat('pt-CV', {
-    style: 'currency',
-    currency: 'CVE',
+  const num = new Intl.NumberFormat('pt-PT', {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
+  return `${num} CVE`;
 }
 
 export function cn(...classes: (string | false | null | undefined)[]): string {
