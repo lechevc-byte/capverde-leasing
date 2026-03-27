@@ -1,59 +1,87 @@
-import { Banknote, BarChart3, Receipt, BookOpen, RefreshCw } from 'lucide-react';
-
 const benefits = [
   {
-    icon: Banknote,
+    number: '01',
     title: 'Zero entrada inicial',
-    description: 'Sem investimento pesado. Conserve a sua tesouraria para a sua atividade.',
+    text: 'Sem investimento pesado. Conserve a sua tesouraria para a sua atividade.',
+    stat: '0$',
+    statLabel: 'de entrada',
   },
   {
-    icon: BarChart3,
+    number: '02',
     title: 'Rendas 100% dedutíveis',
-    description: 'Cada renda reduz o seu resultado tributável. Otimize a sua fiscalidade.',
+    text: 'Cada renda reduz o seu resultado tributável. Otimize a sua fiscalidade.',
+    stat: '100%',
+    statLabel: 'dedutível',
   },
   {
-    icon: Receipt,
+    number: '03',
     title: 'IVA recuperável',
-    description: 'O IVA sobre as rendas é recuperável a cada vencimento mensal.',
+    text: 'O IVA sobre as rendas é recuperável a cada vencimento mensal.',
+    stat: '15%',
+    statLabel: 'IVA recuperado',
   },
   {
-    icon: BookOpen,
+    number: '04',
     title: 'Fora do balanço',
-    description: 'O leasing não aparece no ativo. Preserve a sua capacidade de endividamento.',
+    text: 'O leasing não aparece no ativo. Preserve a sua capacidade de endividamento.',
+    stat: '∞',
+    statLabel: 'capacidade preservada',
   },
   {
-    icon: RefreshCw,
+    number: '05',
     title: 'Renovação fácil',
-    description: 'No final do contrato, renove os seus equipamentos com a última tecnologia.',
+    text: 'No final do contrato, renove os seus equipamentos com a última tecnologia.',
+    stat: '24–60',
+    statLabel: 'meses',
   },
 ];
 
 export default function BenefitsSection() {
   return (
-    <section className="py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
+    <section className="bg-navy py-20 sm:py-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 sm:mb-20">
+          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
             Porquê o leasing?
           </h2>
-          <p className="mt-3 text-gray-text max-w-xl mx-auto">
+          <p className="mt-4 text-white/50 text-lg">
             5 vantagens concretas para a sua empresa
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {benefits.map((b, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:border-teal/30 hover:shadow-md transition-all text-center"
-            >
-              <div className="w-12 h-12 mx-auto mb-4 bg-teal/10 rounded-xl flex items-center justify-center">
-                <b.icon size={24} className="text-teal" />
+        <div className="space-y-20 sm:space-y-28">
+          {benefits.map((b, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <div
+                key={b.number}
+                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-10 md:gap-16`}
+              >
+                {/* Text side */}
+                <div className="flex-1 space-y-4">
+                  <span className="font-sora text-sm font-bold text-gold tracking-widest uppercase">
+                    {b.number}
+                  </span>
+                  <h3 className="font-sora text-2xl sm:text-3xl font-bold text-white">
+                    {b.title}
+                  </h3>
+                  <p className="text-white/60 text-lg leading-relaxed">
+                    {b.text}
+                  </p>
+                </div>
+
+                {/* Stat side */}
+                <div className="flex-1 flex flex-col items-center justify-center">
+                  <span className="font-sora font-extrabold text-gold leading-none" style={{ fontSize: 'clamp(100px, 15vw, 180px)' }}>
+                    {b.stat}
+                  </span>
+                  <span className="text-white/40 text-sm font-medium uppercase tracking-wider mt-2">
+                    {b.statLabel}
+                  </span>
+                </div>
               </div>
-              <h3 className="font-sora font-semibold text-navy text-sm mb-2">{b.title}</h3>
-              <p className="text-xs text-gray-text leading-relaxed">{b.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

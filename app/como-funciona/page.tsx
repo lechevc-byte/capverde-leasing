@@ -1,36 +1,12 @@
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
-import { MessageSquare, Handshake, Truck, ArrowRight, Calculator, Hotel, HardHat, Briefcase, Landmark, ChevronDown } from 'lucide-react';
+import { ArrowRight, Calculator, Hotel, HardHat, Briefcase, Landmark, ChevronDown } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Como funciona — CapVerde Leasing',
   description: 'Em 3 passos simples, tratamos de tudo — do equipamento ao financiamento. Descubra o nosso processo.',
 };
-
-const steps = [
-  {
-    number: '01',
-    icon: MessageSquare,
-    title: 'Diz-nos o que precisas',
-    text: 'Veículo, equipamento de cozinha, informática, mobiliário — descreve simplesmente o teu projeto. Não precisas de saber o modelo exato nem o fornecedor. Nós tratamos disso.',
-    cta: { label: 'Descrever o meu projeto', href: '/contacto' },
-  },
-  {
-    number: '02',
-    icon: Handshake,
-    title: 'Nós encontramos tudo',
-    text: 'Com os nossos acordos com fornecedores parceiros e bancos locais, estruturamos a melhor solução para o teu caso — produto, preço e financiamento. Recebes uma proposta em 48h.',
-    cta: null,
-  },
-  {
-    number: '03',
-    icon: Truck,
-    title: 'Recebes e pagas mensalmente',
-    text: 'O banco paga o fornecedor diretamente. Tu recebes o equipamento e pagas uma renda mensal fixa, 100% dedutível fiscalmente. Sem entrada, sem stress.',
-    cta: null,
-  },
-];
 
 const audiences = [
   { icon: Hotel, title: 'Hotéis & Resorts', description: 'Cozinhas, mobiliário de quartos, equipamento de lavandaria, veículos de shuttle.' },
@@ -56,12 +32,12 @@ const faqs = [
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   return (
-    <details className="group border border-gray-100 rounded-xl overflow-hidden">
-      <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-light transition-colors">
-        <span className="font-sora font-semibold text-navy pr-4">{q}</span>
-        <ChevronDown size={20} className="text-ocean shrink-0 group-open:rotate-180 transition-transform" />
+    <details className="group border border-white/10 rounded-xl overflow-hidden">
+      <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white/5 hover:bg-white/10 transition-colors">
+        <span className="font-sora font-semibold text-white pr-4">{q}</span>
+        <ChevronDown size={20} className="text-gold shrink-0 group-open:rotate-180 transition-transform" />
       </summary>
-      <div className="px-6 pb-5 text-gray-text leading-relaxed">
+      <div className="px-6 pb-5 text-white/60 leading-relaxed">
         {a}
       </div>
     </details>
@@ -70,74 +46,157 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 export default function ComoFuncionaPage() {
   return (
-    <div>
+    <div className="bg-navy">
       {/* Hero */}
-      <section className="bg-navy py-20 sm:py-28">
+      <section className="pt-20 sm:pt-28 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white">
             Como funciona?
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-white/60 max-w-2xl mx-auto">
+          <p className="mt-6 text-lg sm:text-xl text-white/50 max-w-2xl mx-auto">
             Em 3 passos simples, tratamos de tudo — do equipamento ao financiamento.
           </p>
         </div>
       </section>
 
-      {/* 3 Steps */}
-      <section className="py-16 sm:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
-          {steps.map((step) => (
-            <div key={step.number} className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-              {/* Left: number + icon */}
-              <div className="shrink-0 flex flex-col items-center md:items-start">
-                <span className="font-sora text-5xl sm:text-6xl font-extrabold text-ocean/15">{step.number}</span>
-                <div className="w-16 h-16 bg-ocean rounded-2xl flex items-center justify-center -mt-4">
-                  <step.icon size={32} className="text-white" />
-                </div>
-              </div>
+      {/* Timeline */}
+      <section className="pb-20 sm:pb-28">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-              {/* Right: text */}
-              <div className="flex-1">
-                <h2 className="font-sora text-2xl sm:text-3xl font-bold text-navy mb-4">
-                  {step.title}
+          {/* Step 1 */}
+          <div className="relative flex flex-col md:flex-row gap-8 md:gap-16 items-start pb-20 sm:pb-28">
+            {/* Timeline line */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gold/20" />
+
+            <div className="flex-1 relative">
+              <span className="font-sora font-extrabold text-gold/10 leading-none absolute -top-8 left-0" style={{ fontSize: '150px' }}>01</span>
+              <div className="relative pt-16">
+                <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-4">
+                  Diz-nos o que precisas
                 </h2>
-                <p className="text-gray-text text-lg leading-relaxed mb-6">
-                  {step.text}
+                <p className="text-white/60 text-lg leading-relaxed mb-6">
+                  Veículo, equipamento de cozinha, informática, mobiliário — descreve simplesmente o teu projeto. Não precisas de saber o modelo exato nem o fornecedor. Nós tratamos disso.
                 </p>
-                {step.cta && (
-                  <Link href={step.cta.href}>
-                    <Button variant="gold">
-                      {step.cta.label}
-                      <ArrowRight size={18} />
-                    </Button>
-                  </Link>
-                )}
+                <Link href="/contacto">
+                  <Button variant="gold">
+                    Descrever o meu projeto
+                    <ArrowRight size={18} />
+                  </Button>
+                </Link>
               </div>
             </div>
-          ))}
+
+            <div className="flex-1 flex items-center justify-center">
+              <div className="bg-white/5 border border-gold/30 rounded-2xl p-8 w-full max-w-md">
+                <p className="text-white/80 text-lg leading-relaxed italic mb-4">
+                  &ldquo;Preciso de 3 pick-ups para a minha empresa de construção em Santiago. Orçamento máximo 15 000 000 CVE.&rdquo;
+                </p>
+                <p className="text-gold text-sm font-semibold">Exemplo real de pedido</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div className="relative flex flex-col md:flex-row-reverse gap-8 md:gap-16 items-start pb-20 sm:pb-28">
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gold/20" />
+
+            <div className="flex-1 relative">
+              <span className="font-sora font-extrabold text-gold/10 leading-none absolute -top-8 left-0" style={{ fontSize: '150px' }}>02</span>
+              <div className="relative pt-16">
+                <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-4">
+                  Nós encontramos tudo
+                </h2>
+                <p className="text-white/60 text-lg leading-relaxed">
+                  Com os nossos acordos com fornecedores parceiros e bancos locais, estruturamos a melhor solução para o teu caso — produto, preço e financiamento. Recebes uma proposta em 48h.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex-1 flex items-center justify-center">
+              <div className="flex items-center gap-4 sm:gap-6 w-full max-w-md justify-center">
+                <div className="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 text-center flex-1">
+                  <div className="text-2xl mb-1">🏭</div>
+                  <p className="text-white/70 text-xs font-semibold">Fornecedor</p>
+                </div>
+                <div className="text-gold text-2xl font-bold">&rarr;</div>
+                <div className="bg-gold/20 border-2 border-gold rounded-xl p-4 sm:p-5 text-center flex-1">
+                  <span className="font-sora font-bold text-gold text-sm">CV</span>
+                  <p className="text-white text-xs font-semibold mt-1">CapVerde Leasing</p>
+                </div>
+                <div className="text-gold text-2xl font-bold">&rarr;</div>
+                <div className="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 text-center flex-1">
+                  <div className="text-2xl mb-1">🏦</div>
+                  <p className="text-white/70 text-xs font-semibold">Banco</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div className="relative flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+            <div className="flex-1 relative">
+              <span className="font-sora font-extrabold text-gold/10 leading-none absolute -top-8 left-0" style={{ fontSize: '150px' }}>03</span>
+              <div className="relative pt-16">
+                <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-4">
+                  Recebes e pagas mensalmente
+                </h2>
+                <p className="text-white/60 text-lg leading-relaxed">
+                  O banco paga o fornecedor diretamente. Tu recebes o equipamento e pagas uma renda mensal fixa, 100% dedutível fiscalmente. Sem entrada, sem stress.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex-1 flex items-center justify-center">
+              <div className="bg-white/5 border border-gold/30 rounded-2xl p-8 w-full max-w-sm">
+                <p className="text-gold text-xs font-bold uppercase tracking-wider mb-6">Resumo do contrato</p>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-white/50 text-sm">Renda mensal</span>
+                    <span className="font-sora font-bold text-gold text-xl">245 000 CVE</span>
+                  </div>
+                  <div className="border-t border-white/10" />
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-white/50 text-sm">Duração</span>
+                    <span className="font-sora font-semibold text-white">48 meses</span>
+                  </div>
+                  <div className="border-t border-white/10" />
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-white/50 text-sm">Entrada</span>
+                    <span className="font-sora font-bold text-white text-xl">0 CVE</span>
+                  </div>
+                  <div className="border-t border-white/10" />
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-white/50 text-sm">Dedutível</span>
+                    <span className="font-sora font-bold text-gold text-xl">100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* Para quem? */}
-      <section className="py-16 sm:py-20 bg-light">
+      <section className="py-16 sm:py-20 bg-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
+            <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white">
               Para quem?
             </h2>
-            <p className="mt-3 text-gray-text">
+            <p className="mt-3 text-white/50">
               O leasing operacional é a solução ideal para
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {audiences.map((a) => (
-              <div key={a.title} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center hover:border-ocean/30 hover:shadow-md transition-all">
-                <div className="w-14 h-14 mx-auto mb-4 bg-ocean/10 rounded-xl flex items-center justify-center">
-                  <a.icon size={28} className="text-ocean" />
+              <div key={a.title} className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:border-gold/30 transition-all">
+                <div className="w-14 h-14 mx-auto mb-4 bg-gold/10 rounded-xl flex items-center justify-center">
+                  <a.icon size={28} className="text-gold" />
                 </div>
-                <h3 className="font-sora font-semibold text-navy mb-2">{a.title}</h3>
-                <p className="text-sm text-gray-text">{a.description}</p>
+                <h3 className="font-sora font-semibold text-white mb-2">{a.title}</h3>
+                <p className="text-sm text-white/50">{a.description}</p>
               </div>
             ))}
           </div>
@@ -148,7 +207,7 @@ export default function ComoFuncionaPage() {
       <section className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
+            <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white">
               Perguntas frequentes
             </h2>
           </div>
@@ -162,11 +221,14 @@ export default function ComoFuncionaPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-navy py-16 sm:py-20">
+      <section className="py-20 sm:py-28 border-t border-white/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-6">
+          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             Pronto para começar?
           </h2>
+          <p className="text-white/50 text-lg mb-10">
+            O primeiro passo é simples.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contacto">
               <Button variant="gold" size="lg">
