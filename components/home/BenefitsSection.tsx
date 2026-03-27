@@ -1,116 +1,49 @@
 const benefits = [
-  {
-    number: '01',
-    title: 'Zero entrada inicial',
-    text: 'Sem investimento pesado. Conserve a sua tesouraria para a sua atividade.',
-    stat: '0 CVE',
-    statLabel: 'de entrada',
-  },
-  {
-    number: '02',
-    title: 'Rendas 100% dedutíveis',
-    text: 'Cada renda reduz o seu resultado tributável. Otimize a sua fiscalidade.',
-    stat: '100%',
-    statLabel: 'dedutível',
-  },
-  {
-    number: '03',
-    title: 'IVA recuperável',
-    text: 'O IVA sobre as rendas é recuperável a cada vencimento mensal.',
-    stat: 'IVA',
-    statLabel: 'recuperável',
-  },
-  {
-    number: '04',
-    title: 'Fora do balanço',
-    text: 'O leasing não aparece no ativo. Preserve a sua capacidade de endividamento.',
-    stat: '∞',
-    statLabel: 'capacidade preservada',
-  },
-  {
-    number: '05',
-    title: 'Renovação fácil',
-    text: 'No final do contrato, renove os seus equipamentos com a última tecnologia.',
-    stat: '24–60',
-    statLabel: 'meses',
-  },
+  { number: '01', title: 'Zero entrada inicial', text: 'Conserve a sua tesouraria. Sem investimento pesado.', stat: '0 CVE', statLabel: 'de entrada' },
+  { number: '02', title: 'Rendas 100% dedutíveis', text: 'Cada renda reduz o seu resultado tributável.', stat: '100%', statLabel: 'dedutível' },
+  { number: '03', title: 'IVA recuperável', text: 'O IVA sobre as rendas é recuperável a cada mês.', stat: 'IVA', statLabel: 'recuperável' },
+  { number: '04', title: 'Fora do balanço', text: 'Preserve a sua capacidade de endividamento.', stat: '∞', statLabel: 'capacidade' },
+  { number: '05', title: 'Renovação fácil', text: 'Renove os seus equipamentos no final do contrato.', stat: '24–60', statLabel: 'meses' },
 ];
 
 export default function BenefitsSection() {
   return (
-    <section style={{ background: '#00264D' }}>
-      {/* Header */}
-      <div style={{ textAlign: 'center', padding: '80px 20px 48px' }}>
-        <h2 className="font-sora" style={{ fontSize: '40px', fontWeight: 800, color: '#fff' }}>
+    <section className="bg-navy">
+      <div className="max-w-4xl mx-auto px-6 py-20">
+        <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white text-center mb-2">
           Porquê o leasing?
         </h2>
-        <p style={{ marginTop: '12px', fontSize: '16px', color: 'rgba(255,255,255,0.5)' }}>
+        <p className="text-center text-white/40 text-sm mb-14">
           5 vantagens concretas para a sua empresa
         </p>
-      </div>
 
-      {/* Rows */}
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        {benefits.map((b, i) => (
-          <div
-            key={b.number}
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '32px',
-              padding: '48px 40px',
-              minHeight: '120px',
-              borderBottom: i < benefits.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-            }}
-          >
-            {/* Left — text */}
-            <div style={{ flex: '1 1 400px', minWidth: 0 }}>
-              <p
-                className="font-sora"
-                style={{ fontSize: '11px', letterSpacing: '4px', color: '#C9960C', marginBottom: '6px', fontWeight: 700 }}
-              >
-                {b.number}
-              </p>
-              <h3
-                className="font-sora"
-                style={{ fontSize: '28px', fontWeight: 800, color: '#fff', marginBottom: '10px' }}
-              >
-                {b.title}
-              </h3>
-              <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.6)', maxWidth: '500px', lineHeight: 1.7 }}>
-                {b.text}
-              </p>
+        <div className="divide-y divide-white/[0.06]">
+          {benefits.map((b) => (
+            <div key={b.number} className="flex items-center justify-between gap-8 py-7">
+              {/* Left */}
+              <div className="flex items-center gap-5 min-w-0">
+                <span className="font-sora text-gold/40 text-xs font-bold tracking-[3px] shrink-0 w-6">
+                  {b.number}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-sora text-white font-bold text-lg">{b.title}</h3>
+                  <p className="text-white/50 text-sm mt-0.5">{b.text}</p>
+                </div>
+              </div>
+
+              {/* Right — stat pill */}
+              <div className="shrink-0 bg-gold/10 border border-gold/20 rounded-lg px-5 py-3 text-center min-w-[100px]">
+                <p className="font-sora font-black text-gold text-2xl sm:text-3xl leading-none">
+                  {b.stat}
+                </p>
+                <p className="text-white/40 text-[10px] tracking-[2px] uppercase mt-1">
+                  {b.statLabel}
+                </p>
+              </div>
             </div>
-
-            {/* Right — stat box */}
-            <div
-              style={{
-                background: 'rgba(201,150,12,0.1)',
-                border: '1px solid rgba(201,150,12,0.3)',
-                borderRadius: '12px',
-                padding: '24px 40px',
-                textAlign: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <p
-                className="font-sora"
-                style={{ fontSize: 'clamp(48px, 6vw, 80px)', fontWeight: 900, color: '#C9960C', lineHeight: 1 }}
-              >
-                {b.stat}
-              </p>
-              <p style={{ fontSize: '11px', letterSpacing: '3px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', marginTop: '4px' }}>
-                {b.statLabel}
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
-      {/* Bottom spacing */}
-      <div style={{ height: '80px' }} />
     </section>
   );
 }
