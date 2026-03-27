@@ -12,7 +12,6 @@ interface MobileMenuProps {
 const links = [
   { name: 'Início', href: '/', icon: Home },
   { name: 'Categorias', href: '/categorias', icon: Grid3x3 },
-  { name: 'Simulador', href: '/simulador', icon: Calculator },
   { name: 'Contacto', href: '/contacto', icon: Mail },
 ];
 

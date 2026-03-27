@@ -8,7 +8,6 @@ import MobileMenu from './MobileMenu';
 
 const navigation = [
   { name: 'Categorias', href: '/categorias' },
-  { name: 'Simulador', href: '/simulador' },
   { name: 'Contacto', href: '/contacto' },
 ];
 
