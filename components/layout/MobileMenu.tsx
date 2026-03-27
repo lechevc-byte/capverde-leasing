@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { X, Home, Grid3x3, Mail, FileText } from 'lucide-react';
+import { X, Home, Grid3x3, Mail, FileText, Calculator } from 'lucide-react';
 
 interface MobileMenuProps {
   open: boolean;
@@ -45,6 +45,14 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             </Link>
           ))}
           <div className="border-t border-white/10 my-4" />
+          <Link
+            href="/simulador"
+            onClick={onClose}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <Calculator size={20} />
+            Simular
+          </Link>
           <Link
             href="/pedido"
             onClick={onClose}

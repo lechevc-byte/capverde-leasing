@@ -58,7 +58,7 @@ export default function Hero() {
       <div className="relative w-full md:w-1/2 h-[40vh] md:h-auto overflow-hidden order-first md:order-last">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/hero-bg.jpg"
+          src="/hero-bg.webp"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: 'left center' }}
