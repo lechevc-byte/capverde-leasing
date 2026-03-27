@@ -10,23 +10,22 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative bg-navy overflow-hidden">
-      {/* Wave decoration */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" className="w-full h-auto" preserveAspectRatio="none">
-          <path
-            d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,60 L1440,120 L0,120 Z"
-            fill="var(--color-teal)"
-            opacity="0.15"
-          />
-          <path
-            d="M0,80 C360,20 720,100 1080,40 C1260,20 1380,50 1440,80 L1440,120 L0,120 Z"
-            fill="var(--color-light)"
-          />
-        </svg>
-      </div>
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Background image */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/hero-bg.jpg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
+      {/* Gradient overlay : opaque navy left, transparent right */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00264D] from-40% via-[#00264D]/75 via-60% to-[#00264D]/20" />
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#00264D] to-transparent" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
         <div className="max-w-3xl">
           <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             Équipez votre entreprise.{' '}

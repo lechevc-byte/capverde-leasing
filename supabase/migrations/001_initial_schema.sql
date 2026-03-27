@@ -189,12 +189,16 @@ INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_court
    '{"capacite":20,"ecran":"75 pouces 4K","visioconference":true,"acoustique":"traitement compris"}');
 
 -- Matériel CHR
-INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, specifications) VALUES
-  ((SELECT id FROM categories WHERE slug='chr'), 'four-rational-combi', 'Four Combi Rational SelfCookingCenter 10 niveaux', 'Rational', 'SelfCookingCenter 10.1', 'Four professionnel intelligent pour restaurant gastronomique', 28000, '{36,48,60}', true,
-   '{"niveaux":10,"capacite":"10x GN 1/1","programmes":"Intelligence artificielle","connexion":"Wi-Fi, USB","certif":"CE, NSF"}'),
-  ((SELECT id FROM categories WHERE slug='chr'), 'vitrine-refrigeree-boulangerie', 'Vitrine Réfrigérée Pâtisserie 2m', 'Fagor', 'ECC-200', 'Vitrine réfrigérée professionnelle pour boulangerie-pâtisserie', 8500, '{24,36,48}', false,
+INSERT INTO produits (categorie_id, slug, nom, marque, modele, description_courte, prix_achat, durees_disponibles, en_vedette, images, specifications) VALUES
+  ((SELECT id FROM categories WHERE slug='chr'), 'four-convection-vapeur', 'Four à Convection / Vapeur 4 plateaux', 'Leasymat', 'CV-4GN', 'Four professionnel convection/vapeur pour restaurant', 684, '{24,36,48}', true,
+   ARRAY['https://leasymat.com/wp-content/uploads/2025/04/sp-005-61656e68b2750.jpg'],
+   '{"plateaux":4,"format":"60x40 cm","alimentation":"400V","modes":"Convection, Vapeur, Mixte","certif":"CE"}'),
+  ((SELECT id FROM categories WHERE slug='chr'), 'vitrine-refrigeree-morris', 'Vitrine Réfrigérée Morris 2.0', 'Leasymat', 'Morris 2.0', 'Vitrine réfrigérée professionnelle pour boulangerie-pâtisserie', 2338, '{24,36,48}', false,
+   ARRAY['https://leasymat.com/wp-content/uploads/2025/04/7486.0075-9556-scaled.jpg'],
    '{"longueur":"2 mètres","temperature":"2-8°C","eclairage":"LED","niveaux":3,"degivrage":"Automatique"}'),
-  ((SELECT id FROM categories WHERE slug='chr'), 'machine-cafe-franke', 'Machine à Café Professionnelle Franke A1000', 'Franke', 'A1000', 'Machine à café automatique haut volume pour hôtel ou restaurant', 18000, '{24,36,48}', true,
-   '{"capacite":"300 tasses/jour","grains":2,"programmes":6,"nettoyage":"Automatique","ecran":"Tactile couleur"}'),
-  ((SELECT id FROM categories WHERE slug='chr'), 'pack-cuisine-restaurant', 'Pack Cuisine Complète Restaurant 50 couverts', 'Multimarques', 'Pack Pro', 'Équipement complet : fourneau, friteuse, hotte, lave-vaisselle, inox', 45000, '{48,60}', true,
-   '{"couverts":50,"inclus":"Fourneau 6 feux, friteuse double, hotte murale, lave-vaisselle panier, 8m² inox","installation":"Incluse"}');
+  ((SELECT id FROM categories WHERE slug='chr'), 'machine-expresso-3-pistons', 'Machine à Expresso 3 pistons – 540 tasses/h', 'Leasymat', 'EX-3P', 'Machine expresso professionnelle haut volume pour hôtel ou restaurant', 2069, '{24,36,48}', true,
+   ARRAY['https://leasymat.com/wp-content/uploads/2025/04/sp-1005-09100003.jpg'],
+   '{"capacite":"540 tasses/heure","pistons":3,"nettoyage":"Semi-automatique","usage":"Hôtel, Restaurant"}'),
+  ((SELECT id FROM categories WHERE slug='chr'), 'cuisiniere-5-bruleurs', 'Cuisinière Professionnelle 5 brûleurs gaz', 'Leasymat', 'CUI-5BR', 'Cuisinière gaz 5 feux avec four pour cuisine professionnelle', 3575, '{24,36,48}', true,
+   ARRAY['https://leasymat.com/wp-content/uploads/2025/04/7003.0920-9888.jpg'],
+   '{"bruleurs":5,"type":"Gaz","four":"Intégré","usage":"Restaurant, Collectivité"}');
