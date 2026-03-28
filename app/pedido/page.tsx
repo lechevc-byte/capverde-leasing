@@ -4,7 +4,7 @@ import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pedir equipamento em leasing — CapVerde Leasing',
+  title: 'Pedir equipamento em leasing — CaboVerde Leasing',
   description: 'Diz-nos o que precisas. Apresentamos o equipamento e as condições de leasing em 48h.',
 };
 

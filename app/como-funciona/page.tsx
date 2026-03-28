@@ -4,7 +4,7 @@ import { ArrowRight, Calculator, Hotel, HardHat, Briefcase, Landmark, ChevronDow
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Como funciona — CapVerde Leasing',
+  title: 'Como funciona — CaboVerde Leasing',
   description: 'Vendemos equipamentos profissionais em leasing em Cabo Verde. Do pedido à entrega, tratamos de tudo.',
 };
 
@@ -121,7 +121,7 @@ export default function ComoFuncionaPage() {
                 <div className="text-gold text-2xl font-bold">&rarr;</div>
                 <div className="bg-gold/20 border-2 border-gold rounded-xl p-4 sm:p-5 text-center flex-1">
                   <span className="font-sora font-bold text-gold text-sm">CV</span>
-                  <p className="text-white text-xs font-semibold mt-1">CapVerde Leasing</p>
+                  <p className="text-white text-xs font-semibold mt-1">CaboVerde Leasing</p>
                 </div>
                 <div className="text-gold text-2xl font-bold">&rarr;</div>
                 <div className="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 text-center flex-1">

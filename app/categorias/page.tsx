@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 import type { Produit } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'Os nossos equipamentos — CapVerde Leasing',
+  title: 'Os nossos equipamentos — CaboVerde Leasing',
   description: 'Vendemos qualquer equipamento profissional em leasing em Cabo Verde. Veículos, informática, telefonia, mobiliário, CHR.',
 };
 

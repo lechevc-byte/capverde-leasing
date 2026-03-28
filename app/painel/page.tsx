@@ -10,7 +10,7 @@ import type { Metadata } from 'next';
 import type { Demande } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'O meu espaço — CapVerde Leasing',
+  title: 'O meu espaço — CaboVerde Leasing',
 };
 
 export default async function DashboardPage() {

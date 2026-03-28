@@ -30,7 +30,7 @@ export default function Header({ user }: HeaderProps) {
             </div>
             <div className="hidden sm:flex flex-col leading-tight">
               <span className="font-sora font-bold text-lg">
-                CapVerde <span className="text-gold">Leasing</span>
+                CaboVerde <span className="text-gold">Leasing</span>
               </span>
               <span className="text-[10px] text-white/50 uppercase tracking-wider">B2B &middot; B2G</span>
             </div>

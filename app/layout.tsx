@@ -20,14 +20,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CapVerde Leasing — Marketplace de Leasing em Cabo Verde",
+  title: "CaboVerde Leasing — Marketplace de Leasing em Cabo Verde",
   description:
     "O primeiro marketplace de leasing operacional em Cabo Verde. Veículos, informática, telefonia, mobiliário, equipamento CHR.",
   openGraph: {
-    title: "CapVerde Leasing — Marketplace de Leasing em Cabo Verde",
+    title: "CaboVerde Leasing — Marketplace de Leasing em Cabo Verde",
     description:
       "O primeiro marketplace de leasing operacional em Cabo Verde. Veículos, informática, telefonia, mobiliário, equipamento CHR.",
-    siteName: "CapVerde Leasing",
+    siteName: "CaboVerde Leasing",
     locale: "pt_PT",
     type: "website",
   },

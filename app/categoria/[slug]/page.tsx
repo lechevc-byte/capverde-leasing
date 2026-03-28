@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nom = categoryNames[params.slug] || params.slug;
 
   return {
-    title: `${nom} em leasing — CapVerde Leasing`,
+    title: `${nom} em leasing — CaboVerde Leasing`,
     description: `Exemplos de ${nom.toLowerCase()} disponíveis em leasing em Cabo Verde.`,
   };
 }

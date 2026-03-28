@@ -27,7 +27,7 @@ export default function Footer() {
                 <span className="font-sora font-bold text-navy text-sm">CV</span>
               </div>
               <span className="font-sora font-bold text-lg">
-                CapVerde <span className="text-gold">Leasing</span>
+                CaboVerde <span className="text-gold">Leasing</span>
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/40">
-          &copy; {new Date().getFullYear()} CapVerde Leasing. Todos os direitos reservados.
+          &copy; {new Date().getFullYear()} CaboVerde Leasing. Todos os direitos reservados.
         </div>
       </div>
     </footer>

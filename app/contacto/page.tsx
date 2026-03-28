@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
-  title: 'Contacto — CapVerde Leasing',
+  title: 'Contacto — CaboVerde Leasing',
   description: 'Diz-nos o que precisas. Vendemos qualquer equipamento profissional em leasing em Cabo Verde.',
 };
 
@@ -27,7 +27,7 @@ export default function ContactPage() {
           {/* Form */}
           <div className="md:col-span-3 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
             <form action="https://formsubmit.co/contact@capverde-leasing.com" method="POST" className="space-y-5">
-              <input type="hidden" name="_subject" value="Novo pedido de orçamento — CapVerde Leasing" />
+              <input type="hidden" name="_subject" value="Novo pedido de orçamento — CaboVerde Leasing" />
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_next" value="https://capverde-leasing.vercel.app/contacto?sent=true" />
               <input type="text" name="_honey" style={{ display: 'none' }} />

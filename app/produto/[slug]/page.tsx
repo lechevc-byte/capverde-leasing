@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (data) {
       return {
-        title: `${data.nom} — Leasing | CapVerde Leasing`,
+        title: `${data.nom} — Leasing | CaboVerde Leasing`,
         description: data.description_courte || `Alugue ${data.nom} em leasing operacional em Cabo Verde.`,
       };
     }
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: 'Produto — CapVerde Leasing',
+    title: 'Produto — CaboVerde Leasing',
   };
 }
 

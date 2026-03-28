@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 import type { Demande } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'Admin — CapVerde Leasing',
+  title: 'Admin — CaboVerde Leasing',
 };
 
 export default async function AdminPage() {
