@@ -4,7 +4,7 @@ import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'Contacto — CapVerde Leasing',
-  description: 'Peça um orçamento personalizado. Financiamos todo o tipo de equipamento profissional em Cabo Verde.',
+  description: 'Diz-nos o que precisas. Vendemos qualquer equipamento profissional em leasing em Cabo Verde.',
 };
 
 export default function ContactPage() {
@@ -18,7 +18,7 @@ export default function ContactPage() {
             Um projeto? <span className="text-gold">Vamos conversar.</span>
           </h1>
           <p className="mt-4 text-lg text-gray-text max-w-2xl mx-auto">
-            Necessidade personalizada, orçamento à medida, equipamento específico — podemos financiar tudo. Descreva o seu projeto e respondemos em 48h.
+            Diz-nos o que precisas. Apresentamos o equipamento e as condições de leasing em 48h.
           </p>
         </div>
 
@@ -120,7 +120,7 @@ export default function ContactPage() {
               <ul className="space-y-2 text-sm text-white/70">
                 <li>• Todo o tipo de equipamento profissional</li>
                 <li>• Orçamento em 48h</li>
-                <li>• Financiamento de 24 a 60 meses</li>
+                <li>• Leasing de 24 a 60 meses</li>
                 <li>• Zero entrada, 100% dedutível</li>
                 <li>• Entrega em todas as ilhas</li>
               </ul>

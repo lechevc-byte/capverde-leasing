@@ -39,7 +39,7 @@ export default async function HomePage() {
             Tem uma necessidade específica?
           </h2>
           <p className="text-gray-text mb-8 text-lg">
-            Podemos financiar tudo. Descreva o seu projeto e receba um orçamento personalizado em 48h.
+            Diz-nos o que precisas — marca, modelo, quantidade. Apresentamos-te uma proposta de leasing em 48h.
           </p>
           <a href="/contacto">
             <Button variant="gold" size="lg">

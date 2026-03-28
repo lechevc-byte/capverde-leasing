@@ -20,17 +20,17 @@ export default function Hero() {
           </div>
 
           <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Financiamos os seus equipamentos.{' '}
-            <span className="text-gold">Sem entrada.</span>
+            Equipamentos profissionais.{' '}
+            <span className="text-gold">Em leasing.</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
-            Leasing operacional para empresas, hotéis e administrações em Cabo Verde. Veículos, IT, CHR, mobiliário — tudo sob medida.
+            Vendemos qualquer equipamento profissional em leasing. Veículos, IT, CHR, mobiliário, telefonia. Sem entrada. Sem stress. Pague mensalmente.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <Link href="/pedido">
               <Button size="lg" variant="gold">
-                Pedir financiamento
+                Pedir proposta
                 <ArrowRight size={20} />
               </Button>
             </Link>

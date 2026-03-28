@@ -19,7 +19,7 @@ export default function MonthlyPaymentBadge({
       className={`inline-flex flex-col items-center bg-gold text-white px-3 py-1.5 rounded-full text-xs font-semibold leading-tight ${className}`}
     >
       <span>{formatEuroCompact(loyer)}/mês</span>
-      <span className="text-[10px] font-normal opacity-80">60 meses</span>
+      <span className="text-[10px] font-normal opacity-80">renda por 60 meses</span>
     </div>
   );
 }

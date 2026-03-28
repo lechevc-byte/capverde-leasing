@@ -11,7 +11,7 @@ const categories = [
 
 const links = [
   { name: 'Simulador de renda', href: '/simulador' },
-  { name: 'Pedir financiamento', href: '/pedido' },
+  { name: 'Pedir proposta', href: '/pedido' },
   { name: 'O meu espaço', href: '/painel' },
 ];
 
@@ -31,7 +31,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
-              O primeiro marketplace de leasing operacional em Cabo Verde. Financie os seus equipamentos profissionais de forma simples.
+              Vendemos equipamentos profissionais em leasing em Cabo Verde. Sem entrada, pague mensalmente.
             </p>
           </div>
 

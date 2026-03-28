@@ -100,7 +100,7 @@ export default function SimulateurPage() {
                 <span className="font-semibold text-navy">{formatEuro(result.loyerTotal)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-text">Custo do financiamento</span>
+                <span className="text-gray-text">Custo do leasing</span>
                 <span className="font-semibold text-navy">{formatEuro(result.coutFinancement)}</span>
               </div>
               <div className="border-t border-gray-100 pt-3 flex justify-between text-sm">
@@ -117,12 +117,12 @@ export default function SimulateurPage() {
             </div>
 
             <p className="text-xs text-center text-gray-text">
-              Simulação indicativa. Taxa definitiva fixada pelo banco parceiro.
+              Simulação indicativa. Condições definitivas na proposta de leasing.
             </p>
 
             <Link href={`/pedido?duree=${duree}`} className="block">
               <Button className="w-full" size="lg">
-                Pedir estudo de dossier
+                Pedir proposta de leasing
                 <ArrowRight size={18} />
               </Button>
             </Link>

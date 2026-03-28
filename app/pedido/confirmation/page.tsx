@@ -16,11 +16,11 @@ export default function ConfirmationPage() {
       </div>
 
       <h1 className="font-sora text-3xl font-bold text-navy mb-4">
-        Pedido de estudo enviado!
+        Pedido enviado!
       </h1>
 
       <p className="text-gray-text mb-2">
-        O seu pedido de financiamento foi transmitido com sucesso.
+        O seu pedido de equipamento em leasing foi transmitido com sucesso.
       </p>
       <p className="text-gray-text mb-8">
         {reference ? (

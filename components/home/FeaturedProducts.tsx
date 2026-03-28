@@ -17,10 +17,10 @@ export default function FeaturedProducts({ produits }: FeaturedProductsProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            Exemplos de equipamentos que financiamos
+            Exemplos de equipamentos disponíveis
           </h2>
           <p className="mt-2 text-gray-text max-w-xl mx-auto">
-            A título indicativo — financiamos qualquer equipamento profissional, mesmo que não esteja aqui.
+            A título indicativo — vendemos qualquer equipamento profissional em leasing, mesmo que não esteja aqui.
           </p>
         </div>
 
@@ -39,10 +39,10 @@ export default function FeaturedProducts({ produits }: FeaturedProductsProps) {
                 O seu equipamento não está aqui?
               </h3>
               <p className="text-sm text-white/60 mb-4">
-                Descreva-nos o seu projeto e encontramos o produto e o financiamento para si.
+                Diz-nos o que precisas — encontramos e entregamos.
               </p>
               <Button variant="gold" size="sm">
-                Descrever o meu projeto
+                Pedir equipamento à medida
                 <ArrowRight size={16} />
               </Button>
             </Card>

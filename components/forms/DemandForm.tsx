@@ -215,7 +215,7 @@ export default function DemandForm() {
                   value={form.equipement}
                   onChange={(e) => updateField('equipement', e.target.value)}
                   rows={3}
-                  placeholder="Descreva o equipamento que pretende financiar (tipo, marca, quantidade...)"
+                  placeholder="Descreva o equipamento que pretende adquirir em leasing (tipo, marca, quantidade...)"
                   className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-ocean focus:ring-1 focus:ring-ocean resize-none"
                 />
               </div>
@@ -328,7 +328,7 @@ export default function DemandForm() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
           <h2 className="font-sora text-xl font-bold text-navy">Documentos</h2>
           <p className="text-sm text-gray-text">
-            Documentos facultativos — aceleram o estudo do seu dossier.
+            Documentos facultativos — aceleram a preparação da sua proposta.
           </p>
 
           <div className="space-y-4">
@@ -374,7 +374,7 @@ export default function DemandForm() {
       {/* Step 3 — Confirmation */}
       {step === 3 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
-          <h2 className="font-sora text-xl font-bold text-navy">Confirmar o seu pedido de estudo</h2>
+          <h2 className="font-sora text-xl font-bold text-navy">Confirmar o seu pedido</h2>
 
           <div className="bg-light rounded-lg p-4 space-y-2 text-sm">
             <div className="flex justify-between">
@@ -429,7 +429,7 @@ export default function DemandForm() {
               className="mt-1 h-4 w-4 rounded border-gray-300 text-ocean focus:ring-ocean"
             />
             <span className="text-sm text-gray-text">
-              Aceito que os meus dados sejam transmitidos ao banco parceiro para o estudo do meu pedido de financiamento.
+              Aceito que os meus dados sejam utilizados para preparar a minha proposta de leasing.
             </span>
           </label>
         </div>
@@ -454,7 +454,7 @@ export default function DemandForm() {
         ) : (
           <Button onClick={handleSubmit} disabled={!canProceed() || loading}>
             {loading ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />}
-            Enviar pedido de estudo
+            Pedir proposta
           </Button>
         )}
       </div>

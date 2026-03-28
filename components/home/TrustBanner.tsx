@@ -2,7 +2,7 @@ import { Building2, ShieldCheck, Clock } from 'lucide-react';
 
 const items = [
   { icon: Building2, text: 'Parceria bancária local' },
-  { icon: ShieldCheck, text: 'Financiamento garantido' },
+  { icon: ShieldCheck, text: 'Leasing sem entrada' },
   { icon: Clock, text: 'Processo tratado em 5 dias' },
 ];
 

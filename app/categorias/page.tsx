@@ -3,21 +3,13 @@ import Link from 'next/link';
 import CategoryBreadcrumb from '@/components/products/CategoryBreadcrumb';
 import ProductCard from '@/components/products/ProductCard';
 import Button from '@/components/ui/Button';
-import { Truck, Monitor, Smartphone, Armchair, UtensilsCrossed, ArrowRight, type LucideIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import type { Produit } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'Soluções de financiamento — CapVerde Leasing',
-  description: 'Financiamos todo o tipo de equipamento profissional em Cabo Verde. Descubra as nossas soluções.',
-};
-
-const iconMap: Record<string, LucideIcon> = {
-  vehicules: Truck,
-  informatique: Monitor,
-  telephonie: Smartphone,
-  mobilier: Armchair,
-  chr: UtensilsCrossed,
+  title: 'Os nossos equipamentos — CapVerde Leasing',
+  description: 'Vendemos qualquer equipamento profissional em leasing em Cabo Verde. Veículos, informática, telefonia, mobiliário, CHR.',
 };
 
 interface CategoryWithProducts {
@@ -61,18 +53,18 @@ export default async function CategoriesPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <CategoryBreadcrumb items={[{ label: 'Soluções' }]} />
+      <CategoryBreadcrumb items={[{ label: 'Equipamentos' }]} />
 
       <h1 className="font-sora text-3xl sm:text-4xl font-bold text-navy mt-6 mb-3">
-        Categorias
+        Os nossos equipamentos
       </h1>
       <p className="text-gray-text text-lg mb-4 max-w-2xl">
-        Não encontra o que procura? Não há problema. Financiamos qualquer equipamento profissional. Contacte-nos e tratamos de tudo — produto e financiamento.
+        Vendemos qualquer equipamento profissional em leasing. Escolhe da nossa seleção ou diz-nos o que precisas — encontramos por ti.
       </p>
       <div className="mb-12">
         <Link href="/contacto">
           <Button variant="gold" size="sm">
-            Descrever o meu projeto
+            Pedir um equipamento à medida
             <ArrowRight size={16} />
           </Button>
         </Link>
@@ -80,17 +72,13 @@ export default async function CategoriesPage() {
 
       <div className="space-y-16">
         {categoriesWithProducts.map((cat) => {
-          const Icon = iconMap[cat.slug] || Monitor;
           return (
             <section key={cat.id}>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-ocean/10 rounded-xl flex items-center justify-center">
-                  <Icon size={22} className="text-ocean" />
-                </div>
-                <h2 className="font-sora text-2xl font-bold text-navy">{cat.nom}</h2>
+                <h2 className="font-sora text-2xl font-bold text-navy border-l-4 border-gold pl-4">{cat.nom}</h2>
               </div>
               {cat.description && (
-                <p className="text-gray-text mb-6">{cat.description}</p>
+                <p className="text-gray-text mb-6 pl-4 ml-1">{cat.description}</p>
               )}
 
               {cat.produits.length > 0 ? (
@@ -102,22 +90,29 @@ export default async function CategoriesPage() {
               ) : (
                 <p className="text-gray-text text-sm">Contacte-nos para exemplos nesta categoria.</p>
               )}
+
+              <p className="mt-4 text-sm text-gray-text">
+                Não encontras o modelo exacto? Tens outras necessidades em {cat.nom.toLowerCase()}?{' '}
+                <Link href="/contacto" className="text-ocean font-medium hover:underline">
+                  Fala connosco &rarr;
+                </Link>
+              </p>
             </section>
           );
         })}
       </div>
 
-      {/* CTA bottom */}
+      {/* Bottom banner — dark navy */}
       <div className="mt-16 bg-navy rounded-2xl p-8 sm:p-10 text-center">
         <h2 className="font-sora text-xl sm:text-2xl font-bold text-white mb-3">
-          Não encontra o que procura?
+          Precisas de algo que não está aqui?
         </h2>
-        <p className="text-white/60 mb-6 max-w-md mx-auto">
-          Estes são apenas exemplos. Financiamos qualquer equipamento profissional sob orçamento.
+        <p className="text-white/60 mb-6 max-w-lg mx-auto">
+          Trabalhamos com centenas de fornecedores. Diz-nos o que precisas — marca, modelo, quantidade — e apresentamos-te uma proposta de leasing em 48h.
         </p>
-        <Link href="/pedido">
+        <Link href="/contacto">
           <Button variant="gold" size="lg">
-            Pedir financiamento à medida
+            Pedir equipamento à medida
             <ArrowRight size={18} />
           </Button>
         </Link>

@@ -3,18 +3,18 @@ import { MessageSquare, Handshake, PackageCheck } from 'lucide-react';
 const steps = [
   {
     icon: MessageSquare,
-    title: 'Diga-nos o que precisa',
-    description: 'Veículo, equipamento informático, cozinha profissional, mobiliário — descreva simplesmente o seu projeto.',
+    title: 'Diz-nos o que precisas',
+    description: 'Equipamento, quantidade, especificações. Não precisas de procurar fornecedor — nós temos os acordos.',
   },
   {
     icon: Handshake,
-    title: 'Nós tratamos de tudo',
-    description: 'Encontramos o produto junto dos nossos fornecedores parceiros e estruturamos o financiamento com os nossos bancos parceiros.',
+    title: 'Nós fornecemos',
+    description: 'Com os nossos acordos com fornecedores e parceiros bancários, apresentamos-te o produto e as condições de leasing em 48h.',
   },
   {
     icon: PackageCheck,
-    title: 'Recebe sem stress',
-    description: 'O banco paga o fornecedor diretamente. Você recebe o equipamento e paga uma renda mensal fixa.',
+    title: 'Recebe e paga mensalmente',
+    description: 'Entregamos o equipamento. Tu pagas uma renda mensal fixa, diretamente a nós.',
   },
 ];
 
@@ -27,7 +27,7 @@ export default function HowItWorks() {
             Como funciona?
           </h2>
           <p className="mt-3 text-gray-text">
-            Tratamos de tudo — produto e financiamento
+            Do pedido à entrega — tratamos de tudo
           </p>
         </div>
 

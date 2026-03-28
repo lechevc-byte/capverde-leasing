@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Como funciona — CapVerde Leasing',
-  description: 'Em 3 passos simples, tratamos de tudo — do equipamento ao financiamento. Descubra o nosso processo.',
+  description: 'Vendemos equipamentos profissionais em leasing em Cabo Verde. Do pedido à entrega, tratamos de tudo.',
 };
 
 const audiences = [
@@ -17,8 +17,8 @@ const audiences = [
 
 const faqs = [
   {
-    q: 'Posso financiar qualquer equipamento?',
-    a: 'Sim. Se tem uso profissional, financiamos. Veículos, informática, equipamento de cozinha, mobiliário, telefonia — e muito mais.',
+    q: 'Posso adquirir qualquer equipamento em leasing?',
+    a: 'Sim. Se tem uso profissional, vendemos em leasing. Veículos, informática, equipamento de cozinha, mobiliário, telefonia — e muito mais.',
   },
   {
     q: 'Quanto tempo demora o processo?',
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: 'Preciso de ter conta bancária em Cabo Verde?',
-    a: 'Sim, o contrato de leasing é feito com um banco parceiro local (BCA ou Caixa Económica).',
+    a: 'Sim, o leasing é operado através de um banco parceiro local (BCA ou Caixa Económica).',
   },
 ];
 
@@ -54,7 +54,7 @@ export default function ComoFuncionaPage() {
             Como funciona?
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-white/50 max-w-2xl mx-auto">
-            Em 3 passos simples, tratamos de tudo — do equipamento ao financiamento.
+            Do pedido à entrega — tratamos de tudo por ti.
           </p>
         </div>
       </section>
@@ -75,11 +75,11 @@ export default function ComoFuncionaPage() {
                   Diz-nos o que precisas
                 </h2>
                 <p className="text-white/60 text-lg leading-relaxed mb-6">
-                  Veículo, equipamento de cozinha, informática, mobiliário — descreve simplesmente o teu projeto. Não precisas de saber o modelo exato nem o fornecedor. Nós tratamos disso.
+                  Equipamento, quantidade, especificações. Não precisas de procurar fornecedor — nós temos os acordos.
                 </p>
                 <Link href="/contacto">
                   <Button variant="gold">
-                    Descrever o meu projeto
+                    Pedir equipamento
                     <ArrowRight size={18} />
                   </Button>
                 </Link>
@@ -104,10 +104,10 @@ export default function ComoFuncionaPage() {
               <span className="font-sora font-extrabold text-gold/10 leading-none absolute -top-8 left-0" style={{ fontSize: '150px' }}>02</span>
               <div className="relative pt-16">
                 <h2 className="font-sora text-3xl sm:text-4xl font-bold text-white mb-4">
-                  Nós encontramos tudo
+                  Nós fornecemos
                 </h2>
                 <p className="text-white/60 text-lg leading-relaxed">
-                  Com os nossos acordos com fornecedores parceiros e bancos locais, estruturamos a melhor solução para o teu caso — produto, preço e financiamento. Recebes uma proposta em 48h.
+                  Com os nossos acordos com fornecedores e parceiros bancários, apresentamos-te o produto e as condições de leasing em 48h.
                 </p>
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function ComoFuncionaPage() {
                   Recebes e pagas mensalmente
                 </h2>
                 <p className="text-white/60 text-lg leading-relaxed">
-                  O banco paga o fornecedor diretamente. Tu recebes o equipamento e pagas uma renda mensal fixa, 100% dedutível fiscalmente. Sem entrada, sem stress.
+                  Entregamos o equipamento. Tu pagas uma renda mensal fixa, diretamente a nós. 100% dedutível fiscalmente. Sem entrada, sem stress.
                 </p>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function ComoFuncionaPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contacto">
               <Button variant="gold" size="lg">
-                Descrever o meu projeto
+                Pedir equipamento
                 <ArrowRight size={20} />
               </Button>
             </Link>

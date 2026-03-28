@@ -36,7 +36,7 @@ export default function LeasingConfigurator({
     <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 space-y-6">
       {/* Header */}
       <div>
-        <p className="text-sm text-gray-text">Valor do bem financiado</p>
+        <p className="text-sm text-gray-text">Valor do equipamento</p>
         <p className="text-lg font-semibold text-navy">{formatEuro(prixAchat)}</p>
       </div>
 
@@ -108,13 +108,13 @@ export default function LeasingConfigurator({
       <div className="space-y-3">
         <Link href={`/pedido?produit=${produitId}&duree=${duree}`} className="block">
           <Button className="w-full" size="lg">
-            Pedir estudo de financiamento
+            Quero este equipamento em leasing
             <ArrowRight size={18} />
           </Button>
         </Link>
         <p className="text-xs text-center text-gray-text flex items-center justify-center gap-1">
           <Clock size={12} />
-          Dossier estudado em 5 dias úteis
+          Proposta em 48h
         </p>
       </div>
     </div>

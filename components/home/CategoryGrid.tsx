@@ -41,10 +41,10 @@ export default function CategoryGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sora text-3xl sm:text-4xl font-bold text-navy">
-            O que financiamos
+            O que vendemos
           </h2>
           <p className="mt-3 text-gray-text max-w-2xl mx-auto">
-            Financiamos qualquer equipamento nestas categorias — e muito mais. Contacte-nos para qualquer necessidade específica.
+            Vendemos qualquer equipamento profissional em leasing — nestas categorias e muito mais.
           </p>
         </div>
 
