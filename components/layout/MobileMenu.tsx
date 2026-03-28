@@ -11,7 +11,7 @@ interface MobileMenuProps {
 
 const links = [
   { name: 'Início', href: '/', icon: Home },
-  { name: 'Soluções', href: '/categorias', icon: Grid3x3 },
+  { name: 'Equipamentos', href: '/categorias', icon: Grid3x3 },
   { name: 'Contacto', href: '/contacto', icon: Mail },
 ];
 
@@ -59,7 +59,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-gold hover:bg-white/10 transition-colors font-semibold"
           >
             <FileText size={20} />
-            Pedir financiamento
+            Pedir proposta
           </Link>
         </nav>
       </div>

@@ -8,7 +8,7 @@ import MobileMenu from './MobileMenu';
 
 const navigation = [
   { name: 'Como funciona', href: '/como-funciona' },
-  { name: 'Soluções', href: '/categorias' },
+  { name: 'Equipamentos', href: '/categorias' },
   { name: 'Contacto', href: '/contacto' },
 ];
 
@@ -59,7 +59,7 @@ export default function Header({ user }: HeaderProps) {
             </Link>
             <Link href="/pedido">
               <Button variant="primary" size="sm">
-                Pedir financiamento
+                Pedir proposta
               </Button>
             </Link>
           </div>
