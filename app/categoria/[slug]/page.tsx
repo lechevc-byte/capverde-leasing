@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nom = categoryNames[params.slug] || params.slug;
 
   return {
-    title: `${nom} — Financiamento | CapVerde Leasing`,
-    description: `Exemplos de ${nom.toLowerCase()} que financiamos em leasing operacional em Cabo Verde.`,
+    title: `${nom} em leasing — CapVerde Leasing`,
+    description: `Exemplos de ${nom.toLowerCase()} disponíveis em leasing em Cabo Verde.`,
   };
 }
 
@@ -87,7 +87,7 @@ export default async function CategoriePage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <CategoryBreadcrumb
         items={[
-          { label: 'Soluções', href: '/categorias' },
+          { label: 'Equipamentos', href: '/categorias' },
           { label: category.nom },
         ]}
       />
@@ -99,12 +99,12 @@ export default async function CategoriePage({ params }: Props) {
             Não encontra o equipamento exato que precisa?
           </p>
           <p className="text-white/60 text-sm mt-1">
-            Nós encontramos por si — junto dos nossos fornecedores parceiros.
+            Nós fornecemos — temos acordos com dezenas de fornecedores.
           </p>
         </div>
         <Link href="/contacto" className="shrink-0">
           <Button variant="gold" size="sm">
-            Descrever o meu projeto
+            Pedir equipamento à medida
             <ArrowRight size={16} />
           </Button>
         </Link>
@@ -115,7 +115,7 @@ export default async function CategoriePage({ params }: Props) {
           {category.nom}
         </h1>
         <p className="mt-2 text-gray-text text-lg">
-          Exemplos de equipamentos que financiamos nesta categoria. Financiamos também qualquer outro equipamento similar — diga-nos o que precisa.
+          Exemplos de equipamentos disponíveis em leasing nesta categoria. Vendemos também qualquer outro equipamento similar — diz-nos o que precisas.
         </p>
       </div>
 
@@ -127,11 +127,11 @@ export default async function CategoriePage({ params }: Props) {
           Precisa de outro modelo ou especificação?
         </h2>
         <p className="text-white/60 mb-6 max-w-md mx-auto">
-          Descreva-nos o seu projeto — encontramos o produto e o financiamento para si em 48h.
+          Diz-nos o que precisas — marca, modelo, quantidade — e apresentamos-te uma proposta de leasing em 48h.
         </p>
         <Link href="/contacto">
           <Button variant="gold" size="lg">
-            Fazer um pedido à medida
+            Pedir equipamento à medida
             <ArrowRight size={18} />
           </Button>
         </Link>
